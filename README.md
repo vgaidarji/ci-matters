@@ -1,2 +1,2 @@
-# ci-android-comparison
-Use (comparison) of different continuous integration services for Android project
+# ci-matters
+Integration (comparison) of different continuous integration services on Android project.
