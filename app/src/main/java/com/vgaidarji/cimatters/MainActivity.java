@@ -9,6 +9,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle(getString(R.string.main_activity));
+        setTitle(getString(R.string.activity_main));
     }
 }

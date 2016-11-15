@@ -4,6 +4,6 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="ok">OK</string>
-    <string name="main_activity">Main Activity</string>
-    <string name="login_activity">Login Activity</string>
+    <string name="activity_main">Main Activity</string>
+    <string name="activity_login">Login Activity</string>
 </resources>
