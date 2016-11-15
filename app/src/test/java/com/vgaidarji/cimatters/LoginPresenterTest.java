@@ -19,7 +19,7 @@ public class LoginPresenterTest {
     }
 
     @Test
-    public void onLoginClick_shouldOpenNextActivityWithAllowedCredentials() throws Exception {
+    public void onLoginClick_shouldOpenNextActivityForAllowedCredentials() throws Exception {
         presenter.onLoginClick("test@test.com", "1111");
 
         verify(view).openNextActivity();
