@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 apply from: 'config/quality.gradle'
 apply from: 'config/jacoco.gradle'
 
@@ -36,6 +37,13 @@ def getVersionName = { ->
     return name
 }
 
+def getFabricApiKey = { ->
+    def key = project.hasProperty('fabricApiKey') ? fabricApiKey.toString()
+            : "0000000000000000000000000000000000000000"
+    println "Using Fabric API key: " + key
+    return key
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "24.0.3"
@@ -46,6 +54,10 @@ android {
         versionCode getVersionCode()
         versionName getVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                fabricApiKey: getFabricApiKey()
+        ]
     }
     buildTypes {
         release {
@@ -63,14 +75,36 @@ android {
     }
 }
 
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'com.android.support:design:25.0.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
+        transitive = true;
+    }
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:2.0.2-beta'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }
+
+// generate fabric.properties file with apiSecret
+def getFabricApiSecret = { ->
+    def key = project.hasProperty('fabricApiSecret') ? fabricApiSecret.toString() : ""
+    println "Using Fabric API Secret: " + key
+    return key
+}
+
+task fabricProperties() {
+    ant.propertyfile(file: "$projectDir/fabric.properties") {
+        entry(key: "apiSecret", value: getFabricApiSecret())
+    }
+}
+
+preBuild.dependsOn('fabricProperties')
