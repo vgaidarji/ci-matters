@@ -59,4 +59,12 @@ Having 2 jobs in Jenkins which help with Android dependencies installation shoul
 
 ---
 
+### Fabric/Crashlytics configuration
+
+In order to upload APK to Crashlytics project should have following configuration:
+`${projectDir}/fabric.properties` file with `apiSecret` and `io.fabric.ApiKey` in AndroidManifest.xml([1](https://github.com/vgaidarji/ci-matters/blob/master/app/src/main/AndroidManifest.xml#L17), 
+[2](https://github.com/vgaidarji/ci-matters/blob/master/app/build.gradle#L59)) file.
+**Both keys should not be uploaded to the repository for security reasons!**
+
+Pass both parameters to your build from command line: `./gradlew -PfabricApiKey="YOUR_API_KEY" -PfabricApiSecret="YOUR_API_SECRET" crashlyticsUploadDistributionDebug` 
 
