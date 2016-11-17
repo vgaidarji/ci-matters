@@ -59,6 +59,12 @@ Having 2 jobs in Jenkins which help with Android dependencies installation shoul
 
 ---
 
+### Checkstyle
+
+Project uses custom Checkstyle [rules](https://github.com/vgaidarji/ci-matters/blob/master/app/config/checkstyle/checkstyle-yopeso.xml).
+
+---
+
 ### Fabric/Crashlytics configuration
 
 In order to upload APK to Crashlytics project should have following configuration:
