@@ -2,6 +2,40 @@ apply plugin: 'com.android.application'
 apply from: 'config/quality.gradle'
 apply from: 'config/jacoco.gradle'
 
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+def versionBuild = 0
+
+def defaultVersionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+def defaultVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+def defaultVersionNameShort = "${versionMajor}.${versionMinor}"
+
+/**
+ * Get the version code from command line param
+ * Example usage: gradle tasks -PversionCode=999
+ *
+ * @return int If the param -PversionCode is present then return int value or default version code
+ */
+def getVersionCode = { ->
+    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : defaultVersionCode
+    println "VersionCode is set to $code"
+    return code
+}
+
+/**
+ * Get the version name from command line param
+ * Example usage: gradle tasks -PversionName=1.999
+ *
+ * @return String If the param -PversionName is present then return String value or default version name
+ */
+def getVersionName = { ->
+    def defVersionName = versionPatch > 0 ? defaultVersionName : defaultVersionNameShort
+    def name = project.hasProperty('versionName') ? versionName.toString() : defVersionName
+    println "VersionName is set to " + name
+    return name
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "24.0.3"
@@ -9,8 +43,8 @@ android {
         applicationId "com.vgaidarji.cimatters"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode getVersionCode()
+        versionName getVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -22,6 +56,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
