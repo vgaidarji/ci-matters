@@ -43,6 +43,19 @@ If 2fa is enabled on github, then it will not be possible to configure webhook a
 Polling might be used as an alternative in this case.  
 `Build Triggers -> Poll SCM -> * * * * *`. `* * * * *` - poll changes from repository every minute.
  
+## Jenkins Pipeline
+
+Not all plugins are compatible with Pipeline plugin. 
+Check [COMPATIBILITY](https://github.com/jenkinsci/pipeline-plugin/blob/master/COMPATIBILITY.md) document for complete information.
+
+[jenkins/Jenkinsfile]((https://github.com/vgaidarji/ci-matters/tree/master/jenkins/Jenkinsfile)) contains Pipeline job configuration.
+ It contains clone/build/test/analyse/send steps as a regular job.
+ **Secret keys must be exported on the Jenkins node or set directly in Jenkinsfile** like
+ 
+    env.FABRIC_API_KEY = ""
+    env.FABRIC_API_SECRET = ""
+    
+ 
 ### Install/Update Android SDK
 
 Different Android project might use different Android SDK versions and build tools.

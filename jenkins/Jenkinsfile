@@ -1,0 +1,163 @@
+node {
+
+    // export secret keys
+    // (available only on current node)
+    env.FABRIC_API_KEY = ""
+    env.FABRIC_API_SECRET = ""
+
+    stage('Clone') {
+        git url: 'git@github.com:vgaidarji/ci-matters.git',
+            branch: 'master',
+            credentialsId: '3ad9453e-3e34-44c4-977e-88f6b9f60dad'
+    }
+
+    stage('Build') {
+        buildDebug()
+    }
+
+    stage('Unit tests') {
+        unitTests()
+    }
+
+    stage('UI tests') {
+        //uiTests()
+    }
+
+    stage('Static code analysis') {
+        staticCodeAnalysis()
+    }
+
+    stage('Upload to Fabric') {
+        uploadToFabric()
+    }
+
+    stage('Notify via email') {
+        notifyViaEmail()
+    }
+}
+
+def buildDebug() {
+    sh "./gradlew clean assembleDebug -PversionCode=${env.BUILD_NUMBER}  -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
+    archiveArtifacts artifacts: 'app/build/outputs/apk/*.apk', fingerprint: true
+}
+
+def staticCodeAnalysis() {
+    sh "./gradlew checkstyle pmd jdepend lintDebug buildDashboard -PversionCode=${env.BUILD_NUMBER} -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
+    publishLintResults()
+    publishJunitResults()
+    publishJaCoCoCoverage()
+    publishCheckstyleResults()
+    publishHtmlReports()
+}
+
+def unitTests() {
+    sh "./gradlew testDebug jacocoTestReport -PversionCode=${env.BUILD_NUMBER}  -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
+}
+
+def publishLintResults() {
+    androidLint canComputeNew: false,
+        defaultEncoding: '',
+        healthy: '',
+        pattern: '**/reports/lint/lint-result.xml',
+        unHealthy: ''
+}
+
+def publishJunitResults() {
+    step([$class: "JUnitResultArchiver",
+        testResults: "**/app/build/test-results/debug/*.xml"])
+}
+
+def publishJaCoCoCoverage() {
+    step([$class: 'JacocoPublisher',
+        execPattern:'**/**.exec',
+        classPattern: '**/classes',
+        sourcePattern: '**/src/main/java',
+        exclusionPattern: '**/R.class, **/R$*.class, **/*$ViewBinder*.*, **/*$InjectAdapter*.*, **/*Injector*.*, **/BuildConfig.*, **/Manifest*.*, **/*Test*.*, **/*Activity*.*, **/CiMattersApplication*.*, android/**/*.*'])
+}
+
+def publishCheckstyleResults() {
+    step([$class: "CheckStylePublisher",
+      canComputeNew: false,
+      defaultEncoding: "",
+      healthy: "",
+      pattern: "**/reports/checkstyle/**.xml",
+      unHealthy: ""])
+}
+
+def publishHtmlReports() {
+    publishHTML([allowMissing: true,
+        alwaysLinkToLastBuild: true,
+        keepAll: true,
+        reportDir: 'app/build/reports/buildDashboard',
+        reportFiles: 'index.html',
+        reportName: 'Combined HTML report'])
+    publishHTML([allowMissing: true,
+        alwaysLinkToLastBuild: true,
+        keepAll: true,
+        reportDir: 'app/build/reports/androidTests/connected',
+        reportFiles: 'index.html',
+        reportName: 'UI tests report'])
+    publishHTML([allowMissing: true,
+        alwaysLinkToLastBuild: true,
+        keepAll: true,
+        reportDir: 'app/build/reports/checkstyle',
+        reportFiles: 'main.html',
+        reportName: 'Checkstyle main report'])
+    publishHTML([allowMissing: true,
+        alwaysLinkToLastBuild: true,
+        keepAll: true,
+        reportDir: 'app/build/reports/checkstyle',
+        reportFiles: 'test.html',
+        reportName: 'Checkstyle test report'])
+    publishHTML([allowMissing: true,
+        alwaysLinkToLastBuild: true,
+        keepAll: true,
+        reportDir: 'app/build/reports/coverage',
+        reportFiles: 'index.html',
+        reportName: 'UI tests report'])
+}
+
+def uploadToFabric() {
+    sh "./gradlew crashlyticsUploadDistributionDebug -PversionCode=${env.BUILD_NUMBER} -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
+}
+
+// works on local PC, but doesn't work in Jenkins for some reason
+// same emulator configuration works fine in regular, non-pipeline Jenkins job
+def uiTests() {
+    // get rid of running emulators
+    sh '${ANDROID_HOME}/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do ${ANDROID_HOME}/platform-tools/adb -s $line emu kill; done'
+
+    // start android emulator
+    sh '''
+    START=$SECONDS > /dev/null
+    echo no | ${ANDROID_HOME}/tools/android create avd --force -n test -t android-21 --abi default/armeabi-v7a
+    ${ANDROID_HOME}/tools/emulator -engine classic -avd test -no-window -no-boot-anim -noaudio -verbose &
+    EMULATOR_PID=$!
+
+    # Wait for Android to finish booting
+    WAIT_CMD="${ANDROID_HOME}/platform-tools/adb wait-for-device shell getprop init.svc.bootanim"
+    until $WAIT_CMD | grep -m 1 stopped; do
+      echo "Waiting..." > /dev/null
+      sleep 1
+    done
+
+    # Unlock the Lock Screen
+    ${ANDROID_HOME}/platform-tools/adb shell input keyevent 82 &
+    ${ANDROID_HOME}/platform-tools/adb shell input keyevent 4 &
+
+    duration=$(( SECONDS - START )) > /dev/null
+    echo "Android Emulator started after $duration seconds."
+
+    ./gradlew connectedAndroidTest -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}
+
+    // kill started emulator
+    kill $EMULATOR_PID
+
+    // kill all emulators
+    ${ANDROID_HOME}/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do ${ANDROID_HOME}/platform-tools/adb -s $line emu kill; done
+    '''
+}
+
+def notifyViaEmail() {
+    step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'veaceslav.gaidarji@yopeso.com', sendToIndividuals: true])
+}
