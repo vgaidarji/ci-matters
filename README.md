@@ -3,7 +3,7 @@ Integration (comparison) of different continuous integration services on Android
 
 ### CI's integration
 
-* [ ] Jenkins
+* [x] [Jenkins](https://github.com/vgaidarji/ci-matters#jenkins)
 * [ ] Travis CI
 * [ ] Bitrise
 
