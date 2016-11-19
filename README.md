@@ -56,7 +56,7 @@ Pass both parameters to your build from command line:
 * Next build number (set next build number used as versionCode)
 * Clone Workspace SCM Plug-in (clone workspace and use in downstream job)
  
-How to create Jenkins job with clone/build/test/analyse/notify actions:
+How to create Jenkins job with `clone/build/test/analyse/notify` actions:
 
 1. Create job with Freestyle type:
 
@@ -112,6 +112,14 @@ How to create Jenkins job with clone/build/test/analyse/notify actions:
 8. Configure email notifications
 
     <img src="/screenshots/freestyle_email.png" width="907" height="199">
+ 
+**Bonus**:
+Jenkins job described above can be easily created using [jenkins/config.xml](https://github.com/vgaidarji/ci-matters/tree/master/jenkins/config.xml) file.
+
+1. Check [Jenkins HOME directory](https://wiki.jenkins-ci.org/display/JENKINS/Administering+Jenkins) structure to have better understanding where Jenkins keeps jobs.
+2. Create subdirectory in `JENKINS_HOME/jobs` and copy `config.xml` file there.
+3. Restart jenkins (`https://YOUR_JENKINS_SERVER_URL/restart`) to apply the changes.
+4. Configure the job with missing secret keys (Fabric API key & secret, etc.)
  
 ## Jenkins Pipeline
 
