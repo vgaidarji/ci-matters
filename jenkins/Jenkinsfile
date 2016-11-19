@@ -1,9 +1,9 @@
 node {
 
-    // export secret keys
-    // (available only on current node)
-    env.FABRIC_API_KEY = ""
-    env.FABRIC_API_SECRET = ""
+    // configure secret keys (available only on current node)
+    // FABRIC_API_KEY and FABRIC_API_SECRET - build String parameters
+    env.FABRIC_API_KEY = "${FABRIC_API_KEY}"
+    env.FABRIC_API_SECRET = "${FABRIC_API_SECRET}"
 
     stage('Clone') {
         git url: 'git@github.com:vgaidarji/ci-matters.git',
