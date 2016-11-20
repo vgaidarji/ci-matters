@@ -31,7 +31,7 @@ Bitrise automatically registers webhook, which makes our lives even simplier.
     
     These configurations can be imported to bitrise.io. To achieve that create new workflow or edit existing, navigate to `Workflow Editor -> bitrise.yml` and paste file content there.
     
-    4.1. `.bitrise-with-ui-tests.yml` configuration **might abort builds** on bitrise.io due to the limit of 600 seconds maximum on a free plan.
+    `.bitrise-with-ui-tests.yml` configuration **might abort builds** on bitrise.io due to the limit of 600 seconds maximum on a free plan.
     
     <img src="/screenshots/bitrise_aborted_build_timeout.png">
 
