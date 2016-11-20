@@ -51,7 +51,7 @@ def staticCodeAnalysis() {
 }
 
 def unitTests() {
-    sh "./gradlew testDebug jacocoTestReport -PversionCode=${env.BUILD_NUMBER}  -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
+    sh "./gradlew testDebug jacocoTestReport coveralls -PversionCode=${env.BUILD_NUMBER}  -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
 }
 
 def publishLintResults() {

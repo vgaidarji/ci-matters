@@ -36,6 +36,20 @@ Pass both parameters to your build from command line:
  
 ------
 
+### Coveralls
+
+[![Coverage Status](https://coveralls.io/repos/github/vgaidarji/ci-matters/badge.svg)](https://coveralls.io/github/vgaidarji/ci-matters)
+
+`COVERALLS_REPO_TOKEN` environment variable should be exported on the build machine.
+
+##### Jenkins
+
+`Manage Jenkins -> Configure system -> Global properties -> Environment variables`
+
+<img src="/screenshots/coveralls_jenkins_token_variable.png" width="679" height="117">
+
+------
+
 # Jenkins
 
 **Must have plugins for Android project:**
