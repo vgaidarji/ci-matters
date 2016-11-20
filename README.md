@@ -4,8 +4,8 @@ Integration (comparison) of different continuous integration services on Android
 ### CI's integration
 
 * [x] [Jenkins](https://github.com/vgaidarji/ci-matters/blob/master/JENKINS.md)
-* [x] [Travis CI](https://github.com/vgaidarji/ci-matters/blob/master/TRAVIS.md)
-* [ ] Bitrise
+* [x] [Travis CI](https://github.com/vgaidarji/ci-matters/blob/master/TRAVIS.md) [![Build Status](https://travis-ci.org/vgaidarji/ci-matters.svg?branch=master)](https://travis-ci.org/vgaidarji/ci-matters)
+* [x] [Bitrise](https://github.com/vgaidarji/ci-matters/blob/master/BITRISE.md) [![Build Status](https://www.bitrise.io/app/002b43ae8a42b6b1.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://www.bitrise.io/app/002b43ae8a42b6b1)
 
 ### TODO
 

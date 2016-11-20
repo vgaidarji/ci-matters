@@ -1,0 +1,65 @@
+---
+format_version: 1.3.0
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+trigger_map:
+- push_branch: "*"
+  workflow: primary
+- pull_request_source_branch: "*"
+  workflow: primary
+workflows:
+  primary:
+    steps:
+    - activate-ssh-key@3.1.1:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@3.4.1: {}
+    - android-sdk-update@1.0.1:
+        inputs:
+        - platform_tools: stable
+        - build_tools: 24.0.3
+        - sdk_version: '15,22,25'
+        - system_images: extra-google-google_play_services,extra-google-m2repository,extra-android-m2repository,sys-img-armeabi-v7a-android-21
+    - create-android-emulator@0.9.1:
+        inputs:
+        - name: ci-matters
+        - platform: android-21
+    - start-android-emulator@1.1.0:
+        inputs:
+        - skin: 480x800
+    - gradle-runner@1.5.2:
+        title: Gradle UI tests
+        inputs:
+        - gradle_task: clean connectedAndroidTest -PversionCode=$BITRISE_BUILD_NUMBER
+            -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+        - apk_file_include_filter: ''
+        - apk_file_exclude_filter: ''
+        - mapping_file_exclude_filter: ''
+    - gradle-runner@1.5.2:
+        title: Gradle Build/Test/Analyse/Distribute
+        inputs:
+        - gradle_task: assembleDebug testDebug jacocoTestReport checkstyle pmd jdepend
+            lintDebug buildDashboard crashlyticsUploadDistributionDebug -PversionCode=$BITRISE_BUILD_NUMBER
+            -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+        - mapping_file_exclude_filter: ''
+    - gradle-coveralls@1.0.1:
+        inputs:
+        - coveralls_task: coveralls -PversionCode=$BITRISE_BUILD_NUMBER -PfabricApiKey=$FABRIC_API_KEY
+            -PfabricApiSecret=$FABRIC_API_SECRET
+        - coveralls_repo_token: $COVERALLS_REPO_TOKEN
+    - deploy-to-bitrise-io@1.2.5:
+        title: Deploy test reports to Bitrise.io
+        inputs:
+        - deploy_path: "$BITRISE_SOURCE_DIR/app/build/reports/jacocoTestReport/"
+        - notify_email_list: ''
+    - deploy-to-bitrise-io@1.2.5:
+        title: Deploy APK to Bitrise.io
+app:
+  envs:
+  - opts:
+      is_expand: false
+    GRADLE_BUILD_FILE_PATH: build.gradle
+  - opts:
+      is_expand: false
+    GRADLE_TASK: assembleDebug
+  - opts:
+      is_expand: false
+    GRADLEW_PATH: "./gradlew"
