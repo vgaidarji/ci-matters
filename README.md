@@ -32,7 +32,7 @@ In order to upload APK to Crashlytics project should have following configuratio
 
 Pass both parameters to your build from command line:
 
-    `./gradlew -PfabricApiKey="YOUR_API_KEY" -PfabricApiSecret="YOUR_API_SECRET" crashlyticsUploadDistributionDebug`
+    ./gradlew -PfabricApiKey="YOUR_API_KEY" -PfabricApiSecret="YOUR_API_SECRET" crashlyticsUploadDistributionDebug
  
 ------
 
