@@ -2,21 +2,22 @@
 
 **Must have plugins for Android project:**
 
-* Git plugin (clone the project)
-* Gradle Plugin (build/test/etc. Android project)
-* Mailer Plugin (notify the team)
-* Android emulator plugin (run Android emulator)
-* Static Analysis Collector Plug-in (combined report of Checkstyle/DRY/FindBugs/PMD reports) 
-* JaCoCo Plugin (collect code coverage)
-* Checkstyle Plug-in (Checkstyle errors/warnings)
-* Android Lint plugin (Lint errors/warnings)
-* JUnit Plugin (unit tests report)
-* HockeyApp Plugin or Fabric Beta Publisher (distribute APK's)
+* [Git plugin](https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin) (clone the project)
+* [Gradle Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin) (build/test/etc. Android project)
+* [Mailer Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Mailer) (notify the team)
+* [Android emulator plugin](https://wiki.jenkins-ci.org/display/JENKINS/Android+Emulator+Plugin) (run Android emulator)
+* [Static Analysis Collector Plug-in](https://wiki.jenkins-ci.org/display/JENKINS/Static+Code+Analysis+Plug-ins) (combined report of Checkstyle/DRY/FindBugs/PMD reports) 
+* [JaCoCo Plugin](https://wiki.jenkins-ci.org/display/JENKINS/JaCoCo+Plugin) (collect code coverage)
+* [Checkstyle Plug-in](https://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin) (Checkstyle errors/warnings)
+* [Android Lint plugin](https://wiki.jenkins-ci.org/display/JENKINS/Android+Lint+Plugin) (Lint errors/warnings)
+* [JUnit Plugin](https://wiki.jenkins-ci.org/display/JENKINS/JUnit+Plugin) (unit tests report)
+* [HockeyApp Plugin](https://wiki.jenkins-ci.org/display/JENKINS/HockeyApp+Plugin) or [Fabric Beta Publisher](https://wiki.jenkins-ci.org/display/JENKINS/Fabric+Beta+Publisher+Plugin) (distribute APK's)
 
 *Optional*
 
-* Next build number (set next build number used as versionCode)
-* Clone Workspace SCM Plug-in (clone workspace and use in downstream job)
+* [Next build number](https://wiki.jenkins-ci.org/display/JENKINS/Next+Build+Number+Plugin) (set next build number used as versionCode)
+* [Clone Workspace SCM Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Clone+Workspace+SCM+Plugin) (clone workspace and use in downstream job)
+* [JobConfigHistory Plugin](https://wiki.jenkins-ci.org/display/JENKINS/JobConfigHistory+Plugin) (saves copies of all job and system configurations) 
 
 ##### Environment variables 
 
