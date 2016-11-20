@@ -12,4 +12,4 @@ Travis CI understands when the change is pushed to github and starts the build a
 
 In order to build the project we need to have environment variables set in project settings:
  
- <img src="/screenshots/travis_env_variables.png" width="1064" height="610">
+ <img src="/screenshots/travis_env_variables.png">

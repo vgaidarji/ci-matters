@@ -23,18 +23,18 @@
 
 In order to build the project we need to have environment variables set in Jenkins (`Manage Jenkins -> Configure system -> Global properties -> Environment variables`):
  
- <img src="/screenshots/jenkins_env_variables.png" width="1049" height="558">
+ <img src="/screenshots/jenkins_env_variables.png">
 
  
 How to create Jenkins job with `clone/build/test/analyse/notify` actions:
 
 1. Create job with Freestyle type:
 
-    <img src="/screenshots/freestyle_job_type.png" width="926" height="83">
+    <img src="/screenshots/freestyle_job_type.png">
 
 2. Configure source code management section:
 
-    <img src="/screenshots/freestyle_source_code_management.png" width="939" height="544">
+    <img src="/screenshots/freestyle_source_code_management.png">
     
 3. Configure webhooks/polling:
  
@@ -44,7 +44,7 @@ How to create Jenkins job with `clone/build/test/analyse/notify` actions:
     If 2fa is enabled on github, then it will not be possible to configure webhook as mentioned in previous link.
     Polling might be used as an alternative in this case.   
  
-    <img src="/screenshots/freestyle_poll_scm.png" width="921" height="212">
+    <img src="/screenshots/freestyle_poll_scm.png">
 
 4. Configure Android emulator for UI tests. It will be started automatically during the build:
 
@@ -53,13 +53,13 @@ How to create Jenkins job with `clone/build/test/analyse/notify` actions:
     
     `android list targets` command shows "Available Android targets".
     
-    <img src="/screenshots/freestyle_emulator_1.png" width="503" height="572">
+    <img src="/screenshots/freestyle_emulator_1.png">
     
-    <img src="/screenshots/freestyle_emulator_2.png" width="553" height="368">
+    <img src="/screenshots/freestyle_emulator_2.png">
  
 5. Configure how the project will be built using Gradle build scripts
 
-    <img src="/screenshots/freestyle_gradle_build.png" width="921" height="582">
+    <img src="/screenshots/freestyle_gradle_build.png">
     
     In "Tasks" section  we need to specify a list of Gradle tasks to be invoked.
     
@@ -67,21 +67,21 @@ How to create Jenkins job with `clone/build/test/analyse/notify` actions:
     
 6. Configure reports 
     
-    <img src="/screenshots/freestyle_lint.png" width="907" height="396">
+    <img src="/screenshots/freestyle_lint.png">
     
-    <img src="/screenshots/freestyle_junit.png" width="904" height="270">
+    <img src="/screenshots/freestyle_junit.png">
     
-    <img src="/screenshots/freestyle_jacoco.png" width="905" height="362">
+    <img src="/screenshots/freestyle_jacoco.png">
     
     Make sure JaCoCo exclusions match [JaCoCo project configuration](https://github.com/vgaidarji/ci-matters/tree/master/app/config/jacoco.gradle).
     
 7. Configure APK distribution to Fabric Beta
 
-    <img src="/screenshots/freestyle_fabric.png" width="905" height="514">
+    <img src="/screenshots/freestyle_fabric.png">
  
 8. Configure email notifications
 
-    <img src="/screenshots/freestyle_email.png" width="907" height="199">
+    <img src="/screenshots/freestyle_email.png">
  
 **Bonus**:
 Jenkins job described above can be easily created using [jenkins/config.xml](https://github.com/vgaidarji/ci-matters/tree/master/jenkins/config.xml) file.
@@ -107,19 +107,19 @@ How to create Pipeline job:
 
 1. Create job with Pipeline type
 
-    <img src="/screenshots/pipeline_job_type.png" width="925" height="83">
+    <img src="/screenshots/pipeline_job_type.png">
 
 2. Configure build parameters
 
-    <img src="/screenshots/pipeline_build_params.png" width="946" height="710">
+    <img src="/screenshots/pipeline_build_params.png">
 
 3. Add Pipeline script or use from Jenkinsfile
     
-    <img src="/screenshots/pipeline_jenkins_file.png" width="948" height="704">
+    <img src="/screenshots/pipeline_jenkins_file.png">
     
 4. Build the project by pushing it to remote repository or manually
 
-    <img src="/screenshots/pipeline_build_status.png" width="1061" height="242">
+    <img src="/screenshots/pipeline_build_status.png">
 
 **Note**: UI tests stage is disabled at the moment. 
 It works on local PC, but doesn't work in Jenkins for some reason.
