@@ -4,7 +4,7 @@ Integration (comparison) of different continuous integration services on Android
 ### CI's integration
 
 * [x] [Jenkins](https://github.com/vgaidarji/ci-matters#jenkins)
-* [ ] Travis CI
+* [x] Travis CI
 * [ ] Bitrise
 
 ### TODO
@@ -40,13 +40,7 @@ Pass both parameters to your build from command line:
 
 [![Coverage Status](https://coveralls.io/repos/github/vgaidarji/ci-matters/badge.svg)](https://coveralls.io/github/vgaidarji/ci-matters)
 
-`COVERALLS_REPO_TOKEN` environment variable should be exported on the build machine.
-
-##### Jenkins
-
-`Manage Jenkins -> Configure system -> Global properties -> Environment variables`
-
-<img src="/screenshots/coveralls_jenkins_token_variable.png" width="679" height="117">
+`Coveralls` provides test coverage information. `COVERALLS_REPO_TOKEN` environment variable should be exported on the build machine.
 
 ------
 
@@ -69,6 +63,13 @@ Pass both parameters to your build from command line:
 
 * Next build number (set next build number used as versionCode)
 * Clone Workspace SCM Plug-in (clone workspace and use in downstream job)
+
+##### Environment variables 
+
+In order to build the project we need to have environment variables set in Jenkins (`Manage Jenkins -> Configure system -> Global properties -> Environment variables`):
+ 
+ <img src="/screenshots/jenkins_env_variables.png" width="1049" height="558">
+
  
 How to create Jenkins job with `clone/build/test/analyse/notify` actions:
 
@@ -182,3 +183,20 @@ Having 2 jobs in Jenkins which help with Android dependencies installation shoul
    Create parametrized job with content of this shell script and schedule periodic builds of this job. 
    Would be nice to execute this job every night to make sure that build machine has latest Android SDK versions installed.
    To achieve that we need to enable periodic midnight builds - `Build Triggers -> Build periodically -> @midnight`.
+   
+# Travis CI
+
+[![Build Status](https://travis-ci.org/vgaidarji/ci-matters.svg?branch=master)](https://travis-ci.org/vgaidarji/ci-matters)
+
+Travis CI provides [Building and Android project](https://docs.travis-ci.com/user/languages/android) article which describes the basics.
+All what's needed to build the project on Travis CI is [.travis.yml](https://github.com/vgaidarji/ci-matters/tree/master/.travis.yml) file.
+Syntax of `.travis.yml` is very self-explanatory. 
+
+Travis CI understands when the change is pushed to github and starts the build automatically.
+
+##### Environment variables 
+
+In order to build the project we need to have environment variables set in project settings:
+ 
+ <img src="/screenshots/travis_env_variables.png" width="1064" height="610">
+
