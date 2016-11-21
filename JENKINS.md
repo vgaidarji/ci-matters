@@ -18,6 +18,7 @@
 * [Next build number](https://wiki.jenkins-ci.org/display/JENKINS/Next+Build+Number+Plugin) (set next build number used as versionCode)
 * [Clone Workspace SCM Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Clone+Workspace+SCM+Plugin) (clone workspace and use in downstream job)
 * [JobConfigHistory Plugin](https://wiki.jenkins-ci.org/display/JENKINS/JobConfigHistory+Plugin) (saves copies of all job and system configurations) 
+* [Embeddable Build Status Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Embeddable+Build+Status+Plugin) (build status badge)
 
 ##### Environment variables 
 
