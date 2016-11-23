@@ -122,10 +122,6 @@ How to create Pipeline job:
 
     <img src="/screenshots/pipeline_build_status.png">
 
-**Note**: UI tests stage is disabled at the moment. 
-It works on local PC, but doesn't work in Jenkins for some reason.
-Same emulator configuration works fine in regular, non-pipeline Jenkins job described in previous section.
-
 ### Install/Update Android SDK
 
 Different Android project might use different Android SDK versions and build tools.
