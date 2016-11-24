@@ -25,19 +25,18 @@ This table should help people make a decision which CI to choose for the project
 
 | CI            | :dancers:,:construction_worker:,:mag_right::bug:,:vertical_traffic_light:,:mailbox_with_mail: | :iphone::eyes: | :shipit: | :page_facing_up: | :chart_with_upwards_trend: | :bust_in_silhouette:+:raised_hands:/:office:+:man: | :radio:/:computer: | :moneybag: |
 | ------------- |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Jenkins       |.|.|.|.|.|.|.|.|.|.|.|.|
-| Travis        |.|.|.|.|.|.|.|.|.|.|.|.|
-| Bitrise       |.|.|.|.|.|.|.|.|.|.|.|.|
-| TeamCity      |.|.|.|.|.|.|.|.|.|.|.|.|
-| Buddybuild    |.|.|.|.|.|.|.|.|.|.|.|.|
-| Gitlab        |.|.|.|.|.|.|.|.|.|.|.|.|
-| Circle        |.|.|.|.|.|.|.|.|.|.|.|.|
-| Drone.io      |.|.|.|.|.|.|.|.|.|.|.|.|
-| Shippable     |.|.|.|.|.|.|.|.|.|.|.|.|
+| Jenkins       |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette:+:raised_hands:|:radio:/:computer:|:free:|
+| Travis        |.|.|.|.|.|.|.|.|
+| Bitrise       |.|.|.|.|.|.|.|.|
+| TeamCity      |.|.|.|.|.|.|.|.|
+| Buddybuild    |.|.|.|.|.|.|.|.|
+| Gitlab        |.|.|.|.|.|.|.|.|
+| Circle        |.|.|.|.|.|.|.|.|
+| Drone.io      |.|.|.|.|.|.|.|.|
+| Shippable     |.|.|.|.|.|.|.|.|
 
-1. :dancers: - clone 2. :construction_worker: - build 3. :mag_right::bug: - test
-4. :vertical_traffic_light: - analyse 5. :mailbox_with_mail: - notify 6. :iphone::eyes: - UI tests
-7. :shipit: - deploy. [Ship It Squirrel from github](https://www.quora.com/GitHub-What-is-the-significance-of-the-Ship-It-squirrel) 8. :page_facing_up: - configuration file 9. :chart_with_upwards_trend: - visual reports
+1. :dancers: - clone 2. :construction_worker: - build 3. :mag_right::bug: - test 4. :vertical_traffic_light: - analyse 5. :mailbox_with_mail: - notify 
+6. :iphone::eyes: - UI tests 7. :shipit: - [deploy](https://www.quora.com/GitHub-What-is-the-significance-of-the-Ship-It-squirrel) 8. :page_facing_up: - configuration file 9. :chart_with_upwards_trend: - visual reports
 10. :bust_in_silhouette:+:raised_hands:/:office:+:man: - self-hosted/cloud 11. :radio:/:computer: - CI user interface (old/new) 12. :moneybag: - price
     
 
