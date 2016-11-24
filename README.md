@@ -16,6 +16,7 @@ Integration (comparison) of different continuous integration services on Android
 * [ ] Circle CI
 * [ ] Drone.io
 * [ ] Shippable
+* [ ] Snap CI
 
 ---
 
