@@ -120,7 +120,7 @@
       <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
       <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
-      <pattern>**/reports/checkstyle/main.xml, **/reports/checkstyle/main.xml</pattern>
+      <pattern>**/reports/checkstyle/main.xml, **/reports/checkstyle/test.xml</pattern>
     </hudson.plugins.checkstyle.CheckStylePublisher>
     <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.18">
       <testResults>app/build/test-results/debug/*.xml</testResults>
