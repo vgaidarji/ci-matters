@@ -56,6 +56,6 @@ task(jdepend, type: JDepend) {
     classesDir = file('build/intermediates/classes/debug/')
     reports {
         xml.enabled true
-        text.enabled true
+        text.enabled false
     }
 }
