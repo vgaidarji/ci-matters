@@ -1,6 +1,10 @@
 # Jenkins
 
-**Must have plugins for Android project:**
+#### How to install Jenkins
+
+[Download](https://jenkins.io/download/) Jenkins and follow the installing [instructions](https://jenkins.io/doc/book/getting-started/installing/). It shouldn't be tricky.   
+
+#### Must have plugins for Android project
 
 * [Git plugin](https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin) (clone the project)
 * [Gradle Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin) (build/test/etc. Android project)
