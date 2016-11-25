@@ -26,6 +26,9 @@ task jacocoTestReport(type:JacocoReport, dependsOn: "testDebugUnitTest") {
                        '**/CiMattersApplication*.*',
                        'android/**/*.*']
     )
+    if (project.hasProperty("teamcity")) {
+        println '##teamcity[jacocoReport dataPath=\'app/build/jacoco/testDebugUnitTest.exec\' includes=\'com.vgaidarji.cimatters.*\' excludes=\'com.vgaidarji.cimatters.test.* **/*R*.* **/*Injector*.* **/*Activity*.* .*R .*CiMattersApplication .*BuildConfig .*Activity .*Test \']'
+    }
     reports {
         xml.enabled = true
         html.enabled = true
