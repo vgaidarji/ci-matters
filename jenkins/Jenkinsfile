@@ -149,6 +149,7 @@ def uiTests() {
     '''
 
     // emulator isn't ready yet, wait 1 min more
+    // prevents APK installation error
     sh "sleep 60"
 
     // show available instrumentations (optional)

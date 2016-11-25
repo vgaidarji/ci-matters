@@ -31,7 +31,7 @@ In order to build the project we need to have environment variables set in Jenki
  <img src="/screenshots/jenkins_env_variables.png">
 
  
-How to create Jenkins job with `clone/build/test/analyse/notify` actions:
+#### How to create Jenkins job with `clone/build/test/analyse/notify` actions:
 
 1. Create job with Freestyle type:
 
