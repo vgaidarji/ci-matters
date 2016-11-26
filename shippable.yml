@@ -1,0 +1,40 @@
+language: java
+jdk:
+    - oraclejdk7
+env:
+  global:
+    # FABRIC_API_KEY FABRIC_API_SECRET COVERALLS_REPO_TOKEN
+    - secure: fIgFHVipIx882h50ZWKSXMvvRSRlTkmyoD5eVrm9ld1lFspwZ1t01x4V5HOYyl28sAlkAaD5Sc1dfV8RGj9nQtmbFjypGP/DS7HjqekHGIcl/BACSZc3XNCE2Btbn2jQuQ0a4Tjqn/xqjCJumNMOmo3JVNfpedURPAvYfuicD5tDkFJDv2yt0m10VhSFQoC3WC9XQC3WzGzwfcUcOmcYWz+gZW40EUIlzUiqvlWe5f3EuOnYWEh6CPoIBuQj8dhTmkPFX77XjVXjv7DVToQYJPA94LA1dVE26gxrwDaYPoLsLycYtXlVDYBwz6Ih8z1EkhYL1fFDfrz0aXCkxhohbw==
+    - JACOCO_REPORT_LOCATION="app/build/reports/jacocoTestReport/jacocoTestReport.xml"
+build:
+  pre_ci_boot:
+    image_name: bitriseio/docker-android
+    image_tag: latest
+    pull: true
+  ci:
+      # accept licenses - create a folder to store the license CRC
+      - mkdir "$ANDROID_HOME/licenses" || true
+      - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+      - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+      # create folders for reports
+      - mkdir -p shippable/testresults
+      - mkdir -p shippable/codecoverage
+      # run emulator
+      - android list targets
+      - ./ui_tests_on_emulator.sh
+      # one line build steps (don't want to pass paramaters to every gradlew command)
+      - ./gradlew clean assembleDebug testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard connectedAndroidTest crashlyticsUploadDistributionDebug -PpreDexEnable=false -PversionCode=$BUILD_NUMBER
+      # convert JaCoCo to cobertura
+      - wget -O cover2cover.py https://raw.githubusercontent.com/rix0rrr/cover2cover/master/cover2cover.py
+      - python cover2cover.py $JACOCO_REPORT_LOCATION app/src/main/java > shippable/codecoverage/coverage.xml
+      # copy reports for Shippable
+      - cp -r app/build/test-results/* shippable/testresults/
+
+integrations:
+    notifications:
+        - integrationName: email
+          type: email
+          recipients:
+            - veaceslav.gaidarji@yopeso.com
+          on_success: change
+          on_failure: always

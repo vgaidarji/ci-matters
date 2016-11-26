@@ -10,6 +10,7 @@ $ANDROID_HOME/tools/emulator -engine classic -avd teamcity -no-window -no-boot-a
 
 # Wait for Android to finish booting
 # (would be great to set max waiting time to avoid infinite waiting in error case)
+# alternatively use wait_for_emulator.sh
 WAIT_CMD="$ANDROID_HOME/platform-tools/adb wait-for-device shell getprop init.svc.bootanim"
 until $WAIT_CMD | grep -m 1 stopped; do
   echo "Waiting..." > /dev/null

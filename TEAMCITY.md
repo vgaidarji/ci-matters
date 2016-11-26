@@ -44,7 +44,7 @@ and ready to automatically start builds when change is pushed to remote reposito
 
     <img src="/screenshots/team_city_build_step_ui_tests.png">
 
-    Shell script content can be found in [`team_city_ui_tests.sh`](https://github.com/vgaidarji/ci-matters/tree/master/team_city_ui_tests.sh) file.
+    Shell script content can be found in [`ui_tests_on_emulator.sh`](https://github.com/vgaidarji/ci-matters/tree/master/ui_tests_on_emulator.sh) file.
 
 8. Configure `Upload to Fabric` build step:
  
