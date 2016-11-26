@@ -39,11 +39,27 @@ def getVersionName = { ->
 }
 
 def getFabricApiKey = { ->
-    def key = project.hasProperty('fabricApiKey') ? fabricApiKey.toString()
-            : "0000000000000000000000000000000000000000"
+    def key = project.hasProperty('fabricApiKey') ? fabricApiKey.toString() :
+            System.getenv("FABRIC_API_KEY") ?: "0000000000000000000000000000000000000000"
     println "Using Fabric API key: " + key
     return key
 }
+
+def getFabricApiSecret = { ->
+    def secret = project.hasProperty('fabricApiSecret') ? fabricApiSecret.toString() :
+            System.getenv("FABRIC_API_SECRET") ?: ""
+    println "Using Fabric API Secret: " + secret
+    return secret
+}
+
+task fabricProperties() {
+    description "Generate fabric.properties file with apiSecret"
+    ant.propertyfile(file: "$projectDir/fabric.properties") {
+        entry(key: "apiSecret", value: getFabricApiSecret())
+    }
+}
+
+preBuild.dependsOn('fabricProperties')
 
 android {
     compileSdkVersion 25
@@ -97,18 +113,3 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }
-
-// generate fabric.properties file with apiSecret
-def getFabricApiSecret = { ->
-    def key = project.hasProperty('fabricApiSecret') ? fabricApiSecret.toString() : ""
-    println "Using Fabric API Secret: " + key
-    return key
-}
-
-task fabricProperties() {
-    ant.propertyfile(file: "$projectDir/fabric.properties") {
-        entry(key: "apiSecret", value: getFabricApiSecret())
-    }
-}
-
-preBuild.dependsOn('fabricProperties')
