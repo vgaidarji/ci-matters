@@ -29,7 +29,7 @@ This table should help people make a decision which CI to choose for the project
 | Jenkins       |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:|:radio:/:computer:|:free:/:free:|
 | Travis        |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/69:moneybag:|
 | Bitrise       |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/50:moneybag:|
-| TeamCity      |.|.|.|.|.|.|.|.|
+| TeamCity      |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:/:cloud:|:computer:|.|
 | Buddybuild    |.|.|.|.|.|.|.|:free:/?|
 | Gitlab        |.|.|.|.|.|:cloud:|.|:free:/?|
 | Circle        |.|.|.|.|.|.|.|:free:/?|
