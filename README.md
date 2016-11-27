@@ -6,11 +6,11 @@ Integration (comparison) of different continuous integration services on Android
 * [x] [Jenkins](https://github.com/vgaidarji/ci-matters/blob/master/JENKINS.md)
 * [x] [Travis CI](https://github.com/vgaidarji/ci-matters/blob/master/TRAVIS.md) [![Build Status](https://travis-ci.org/vgaidarji/ci-matters.svg?branch=master)](https://travis-ci.org/vgaidarji/ci-matters)
 * [x] [Bitrise](https://github.com/vgaidarji/ci-matters/blob/master/BITRISE.md) [![Build Status](https://www.bitrise.io/app/002b43ae8a42b6b1.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://www.bitrise.io/app/002b43ae8a42b6b1)
-* [x] [TeamCity](https://github.com/vgaidarji/ci-matters/blob/master/TEAMCITY.md)
+* [x] [TeamCity](https://github.com/vgaidarji/ci-matters/blob/master/TEAM_CITY.md)
+* [x] [BuddyBuild](https://github.com/vgaidarji/ci-matters/blob/master/BUDDY_BUILD.md) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
 
 ### TODO
 
-* [ ] Buddybuild
 * [ ] GreenHouse
 * [ ] Gitlab CI
 * [ ] Circle CI
@@ -30,12 +30,13 @@ This table should help people make a decision which CI to choose for the project
 | Travis        |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/69:moneybag:|
 | Bitrise       |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/50:moneybag:|
 | TeamCity      |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:/:cloud:|:computer:|.|
-| Buddybuild    |.|.|.|.|.|.|.|:free:/?|
 | Gitlab        |.|.|.|.|.|:cloud:|.|:free:/?|
 | Circle        |.|.|.|.|.|.|.|:free:/?|
+| GreenHouse    |.|.|.|.|.|.|.|:free:/?|
 | Drone.io      |.|.|.|.|.|.|.|:free:/25:moneybag:|
 | Shippable     |.|.|.|.|.|.|.|:free:/25:moneybag:|
 | Snap CI       |.|.|.|.|.|.|.|:free:/30:moneybag:|
+| Buddybuild    |:star:|:star:|:x:|:x:|:x:|:cloud:|:computer:|:free:/?|
 
 1. :dancers: - clone 2. :construction_worker: - build 3. :mag_right::bug: - test 4. :vertical_traffic_light: - analyse 5. :mailbox_with_mail: - notify 
 6. :iphone::eyes: - UI tests 7. :shipit: - [deploy](https://www.quora.com/GitHub-What-is-the-significance-of-the-Ship-It-squirrel) 8. :page_facing_up: - configuration file 9. :chart_with_upwards_trend: - visual reports
