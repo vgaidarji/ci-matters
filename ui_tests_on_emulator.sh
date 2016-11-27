@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
+# pass emulator as parameter to script
+EMULATOR=emulator
+if [ "$1" != "" ]; then
+    EMULATOR=$1
+fi
+
 # get rid of running emulators
 $ANDROID_HOME/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do $ANDROID_HOME/platform-tools/adb -s $line emu kill; done
 
 # start android emulator
 START=$SECONDS > /dev/null
-echo no | $ANDROID_HOME/tools/android create avd --force -n teamcity -t android-21 --abi default/armeabi-v7a
-$ANDROID_HOME/tools/emulator -engine classic -avd teamcity -no-window -no-boot-anim -noaudio -verbose &
+echo no | $ANDROID_HOME/tools/android create avd --force -n test -t android-21 --abi default/armeabi-v7a
+$ANDROID_HOME/tools/$EMULATOR -avd test -no-window -no-boot-anim -noaudio -verbose &
 
 # Wait for Android to finish booting
 # (would be great to set max waiting time to avoid infinite waiting in error case)

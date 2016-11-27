@@ -8,7 +8,7 @@ env:
     - JACOCO_REPORT_LOCATION="app/build/reports/jacocoTestReport/jacocoTestReport.xml"
 build:
   pre_ci_boot:
-    image_name: bitriseio/docker-android
+    image_name: codestare/shippable-android-buildimage
     image_tag: latest
     pull: true
   ci:
@@ -16,14 +16,19 @@ build:
       - mkdir "$ANDROID_HOME/licenses" || true
       - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
       - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+      # install missing Android dependencies
+      - echo y | android update sdk --no-ui --all --filter "android-15,android-21,android-22,android-25,build-tools-24.0.3"
+      - echo y | android update sdk --no-ui --all --filter "extra-android-support,extra-google-m2repository,extra-android-m2repository,extra-google-google_play_services"
+      - echo y | android update sdk -a -u -t "sys-img-armeabi-v7a-android-21"
       # create folders for reports
       - mkdir -p shippable/testresults
       - mkdir -p shippable/codecoverage
       # run emulator
+      - export ANDROID_EMULATOR_FORCE_32BIT=true
       - android list targets
-      - ./ui_tests_on_emulator.sh
+      - ./ui_tests_on_emulator.sh emulator64-arm
       # one line build steps (don't want to pass paramaters to every gradlew command)
-      - ./gradlew clean assembleDebug testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard connectedAndroidTest crashlyticsUploadDistributionDebug -PpreDexEnable=false -PversionCode=$BUILD_NUMBER
+      - ./gradlew clean assembleDebug testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard crashlyticsUploadDistributionDebug -PpreDexEnable=false -PversionCode=$BUILD_NUMBER
       # convert JaCoCo to cobertura
       - wget -O cover2cover.py https://raw.githubusercontent.com/rix0rrr/cover2cover/master/cover2cover.py
       - python cover2cover.py $JACOCO_REPORT_LOCATION app/src/main/java > shippable/codecoverage/coverage.xml
