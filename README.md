@@ -8,7 +8,8 @@ Integration (comparison) of different continuous integration services on Android
 * [x] [Bitrise](https://github.com/vgaidarji/ci-matters/blob/master/BITRISE.md) [![Build Status](https://www.bitrise.io/app/002b43ae8a42b6b1.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://www.bitrise.io/app/002b43ae8a42b6b1)
 * [x] [TeamCity](https://github.com/vgaidarji/ci-matters/blob/master/TEAM_CITY.md)
 * [x] [BuddyBuild](https://github.com/vgaidarji/ci-matters/blob/master/BUDDY_BUILD.md) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
-
+* [x] [Shippable](https://github.com/vgaidarji/ci-matters/blob/master/SHIPPABLE.md) [![Run Status](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/badge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c) [![Coverage Badge](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/coverageBadge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c)
+ 
 ### TODO
 
 * [ ] GreenHouse
@@ -30,11 +31,11 @@ This table should help people make a decision which CI to choose for the project
 | Travis        |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/69:moneybag:|
 | Bitrise       |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/50:moneybag:|
 | TeamCity      |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:/:cloud:|:computer:|.|
+| Shippable     |:star:|:star:|:star:|:star:|:x:|:cloud:|:radio:|:free:/25:moneybag:|
 | Gitlab        |.|.|.|.|.|:cloud:|.|:free:/?|
 | Circle        |.|.|.|.|.|.|.|:free:/?|
 | GreenHouse    |.|.|.|.|.|.|.|:free:/?|
 | Drone.io      |.|.|.|.|.|.|.|:free:/25:moneybag:|
-| Shippable     |.|.|.|.|.|.|.|:free:/25:moneybag:|
 | Snap CI       |.|.|.|.|.|.|.|:free:/30:moneybag:|
 | Buddybuild    |:star:|:star:|:x:|:x:|:x:|:cloud:|:computer:|:free:/?|
 
@@ -61,6 +62,9 @@ In order to upload APK to Crashlytics project should have following configuratio
 Pass both parameters to your build from command line:
 
     ./gradlew -PfabricApiKey="YOUR_API_KEY" -PfabricApiSecret="YOUR_API_SECRET" crashlyticsUploadDistributionDebug
+
+or export these keys as environment variables on a build machine 
+and they will be automatically read from there during the build (no need to pass keys as parameters in this case).
  
 ------
 

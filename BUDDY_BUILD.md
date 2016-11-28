@@ -1,5 +1,7 @@
 # BuddyBuild
 
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
+
 [BuddyBuild](https://www.buddybuild.com) is an online CI service.
 
 #### How to configure Android project on BuddyBuild
