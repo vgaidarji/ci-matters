@@ -23,17 +23,19 @@ Integration (comparison) of different continuous integration services on Android
 
 # Comparison
 
+#### Comparison table
+
 This table should help people make a decision which CI to choose for the project.
 
 | CI            | :dancers:,:construction_worker:,:mag_right::bug:,:vertical_traffic_light:,:mailbox_with_mail: | :iphone::eyes: | :shipit: | :page_facing_up: | :chart_with_upwards_trend: | :bust_in_silhouette::raised_hands:/:cloud: | :radio:/:computer: | :moneybag:/:moneybag: |
 | ------------- |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Jenkins       |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:|:radio:/:computer:|:free:/:free:|
-| Travis        |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/69:moneybag:|
+| Travis CI     |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/69:moneybag:|
 | Bitrise       |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/50:moneybag:|
 | TeamCity      |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:/:cloud:|:computer:|.|
 | Shippable     |:star:|:star:|:star:|:star:|:x:|:cloud:|:radio:|:free:/25:moneybag:|
-| Gitlab        |.|.|.|.|.|:cloud:|.|:free:/?|
-| Circle        |.|.|.|.|.|.|.|:free:/?|
+| Gitlab CI     |.|.|.|.|.|:cloud:|.|:free:/?|
+| Circle CI     |.|.|.|.|.|.|.|:free:/?|
 | GreenHouse    |.|.|.|.|.|.|.|:free:/?|
 | Drone.io      |.|.|.|.|.|.|.|:free:/25:moneybag:|
 | Snap CI       |.|.|.|.|.|.|.|:free:/30:moneybag:|
@@ -43,6 +45,35 @@ This table should help people make a decision which CI to choose for the project
 6. :iphone::eyes: - UI tests 7. :shipit: - [deploy](https://www.quora.com/GitHub-What-is-the-significance-of-the-Ship-It-squirrel) 8. :page_facing_up: - configuration file 9. :chart_with_upwards_trend: - visual reports
 10. :bust_in_silhouette::raised_hands:/:cloud: - self-hosted/cloud 11. :radio:/:computer: - CI user interface (old/new) 12. :moneybag:/:moneybag: - price on open-source/private project
     
+
+#### Pricing
+
+All listed CI's provide free plan with some restrictions like "open-source projects only" or "only 1 build node",
+but it's enough to configure the build process and check if CI suits or not.
+
+##### Free plans
+
+Choosing a free plan for a project is more suitable for a freelance project. 
+Usually, services provide limits on such plans for understandable reasons.
+
+##### Paid plans
+
+CI's have different approaches and different paid plans. 
+Check every CI pricing information for more details and choose the best option for you.
+
+What might matter is the starting price for paid plan:
+
+* [Jenkins](https://www.cloudbees.com/products/pricing) - starts with **X$.** (paid version (Cloudbees), no public information)
+* [Travis CI](https://travis-ci.com/plans) - starts with **69$/month.** (1 concurrent build, &infin; projects, &infin; build time)
+* [Bitrise](https://www.bitrise.io/pricing) - starts with **50$/month.** (1 concurrent build, &infin; projects, 45 min. max build time)
+* [TeamCity](https://www.jetbrains.com/teamcity/buy/#license-type=new-license) - starts with **1999$.** (3 concurrent builds, &infin; projects, &infin; build time) 
+* [Shippable](https://app.shippable.com/pricing.html) - starts with **25$/month.** (2 concurrent builds, &infin; projects, &infin; build time)
+* [Gitlab CI](https://about.gitlab.com/products/) - starts with **15$/month.** (2 concurrent builds, &infin; projects, &infin; build time)
+* [Circle CI](https://circleci.com/pricing/) - starts with **39$/month.** (2 concurrent builds, &infin; projects, 500 minutes build time per month)
+* [GreenHouse](https://greenhouseci.com/pricing.html) - starts with **49$/month.** (1 concurrent build, &infin; projects, &infin; build time) 
+* [Drone.io](https://drone.io/pricing) - starts with **25$/month.** (1 concurrent build, 5 private projects, &infin; build time)
+* [Snap CI](https://snap-ci.com/plans) - starts with **30$/month.** (1 concurrent build, 5 private projects, &infin; build time)
+* [Buddybuild](https://www.buddybuild.com/pricing/) - starts with **49$/month.** (1 concurrent build, &infin; projects, &infin; build time)
 
 ---
 
