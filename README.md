@@ -27,23 +27,23 @@ Integration (comparison) of different continuous integration services on Android
 
 This table should help people make a decision which CI to choose for the project.
 
-| CI            | :dancers:,:construction_worker:,:mag_right::bug:,:vertical_traffic_light:,:mailbox_with_mail: | :iphone::eyes: | :rocket: | :page_facing_up: | :chart_with_upwards_trend: | :bust_in_silhouette::raised_hands:/:cloud: | :radio:/:computer: | :moneybag:/:moneybag: |
+| CI            | :dancers:,:construction_worker:,:mag_right::bug:,:vertical_traffic_light:,:mailbox_with_mail: | :iphone::eyes: | :rocket: | :page_facing_up: | :chart_with_upwards_trend: | :bust_in_silhouette::raised_hands:/:cloud: | :radio:/:computer: | :dollar: |
 | ------------- |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Jenkins       |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:|:radio:/:computer:|:free:/:free:|
-| Travis CI     |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/69:moneybag:|
-| Bitrise       |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:/50:moneybag:|
-| TeamCity      |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:/:cloud:|:computer:|.|
-| Shippable     |:star:|:star:|:star:|:star:|:x:|:cloud:|:radio:|:free:/25:moneybag:|
-| Gitlab CI     |.|.|.|.|.|:cloud:|.|:free:/?|
-| Circle CI     |.|.|.|.|.|.|.|:free:/?|
-| GreenHouse    |.|.|.|.|.|.|.|:free:/?|
-| Drone.io      |.|.|.|.|.|.|.|:free:/25:moneybag:|
-| Snap CI       |.|.|.|.|.|.|.|:free:/30:moneybag:|
-| Buddybuild    |:star:|:star:|:x:|:x:|:x:|:cloud:|:computer:|:free:/?|
+| Jenkins       |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:|:radio:/:computer:|:free:|
+| TeamCity      |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:/:cloud:|:computer:|:moneybag::moneybag::moneybag:|
+| Travis CI     |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
+| Bitrise       |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
+| Shippable     |:star:|:star:|:star:|:star:|:x:|:cloud:|:radio:|:moneybag:|
+| Buddybuild    |:star:|:star:|:x:|:x:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
+| Gitlab CI     |.|.|.|.|.|.|.|:moneybag:|
+| Circle CI     |.|.|.|.|.|.|.|:moneybag:|
+| GreenHouse    |.|.|.|.|.|.|.|:moneybag::moneybag:|
+| Drone.io      |.|.|.|.|.|.|.|:moneybag:|
+| Snap CI       |.|.|.|.|.|.|.|:moneybag:|
 
 1. :dancers: - clone 2. :construction_worker: - build 3. :mag_right::bug: - test 4. :vertical_traffic_light: - analyse 5. :mailbox_with_mail: - notify 
 6. :iphone::eyes: - UI tests 7. :rocket: - deploy 8. :page_facing_up: - configuration file 9. :chart_with_upwards_trend: - visual reports
-10. :bust_in_silhouette::raised_hands:/:cloud: - self-hosted/cloud 11. :radio:/:computer: - CI user interface (old/new) 12. :moneybag:/:moneybag: - price on open-source/private project
+10. :bust_in_silhouette::raised_hands:/:cloud: - self-hosted/cloud 11. :radio:/:computer: - CI user interface (old/new) 12. :dollar: - price
     
 
 #### Pricing
