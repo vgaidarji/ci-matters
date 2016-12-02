@@ -53,7 +53,7 @@ but it's enough to configure the build process and check if CI suits or not.
 ##### Free plans
 
 Choosing a free plan for a project is more suitable for a freelance project. 
-Usually, services provide limits on such plans for understandable reasons.
+Usually, some services provide limits on such plans for understandable reasons.
 
 ##### Paid plans
 
@@ -65,7 +65,7 @@ What might matter is the starting price for paid plan:
 * [Jenkins](https://www.cloudbees.com/products/pricing) - starts with **X$.** (paid version (Cloudbees), no public information)
 * [Travis CI](https://travis-ci.com/plans) - starts with **69$/month.** (1 concurrent build, &infin; projects, &infin; build time)
 * [Bitrise](https://www.bitrise.io/pricing) - starts with **50$/month.** (1 concurrent build, &infin; projects, 45 min. max build time)
-* [TeamCity](https://www.jetbrains.com/teamcity/buy/#license-type=new-license) - starts with **1999$.** (3 concurrent builds, &infin; projects, &infin; build time) 
+* [TeamCity](https://www.jetbrains.com/teamcity/buy/#license-type=new-license) - starts with **299$.** (4 concurrent builds, 30 project configurations, &infin; build time) 
 * [Shippable](https://app.shippable.com/pricing.html) - starts with **25$/month.** (2 concurrent builds, &infin; projects, &infin; build time)
 * [Gitlab CI](https://about.gitlab.com/products/) - starts with **15$/month.** (2 concurrent builds, &infin; projects, &infin; build time)
 * [Circle CI](https://circleci.com/pricing/) - starts with **39$/month.** (2 concurrent builds, &infin; projects, 500 minutes build time per month)
