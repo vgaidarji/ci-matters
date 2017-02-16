@@ -16,7 +16,6 @@ Integration (comparison) of different continuous integration services on Android
 * [ ] Gitlab CI
 * [ ] Circle CI
 * [ ] Drone.io
-* [ ] Snap CI
 
 ---
 
@@ -38,7 +37,6 @@ This table should help people make a decision which CI to choose for the project
 | Circle CI     |.|.|.|.|.|.|.|:moneybag:|
 | GreenHouse    |.|.|.|.|.|.|.|:moneybag::moneybag:|
 | Drone.io      |.|.|.|.|.|.|.|:moneybag:|
-| Snap CI       |.|.|.|.|.|.|.|:moneybag:|
 
 1. :dancers: - clone 2. :construction_worker: - build 3. :mag_right::bug: - test 4. :vertical_traffic_light: - analyse 5. :mailbox_with_mail: - notify 
 6. :iphone::eyes: - UI tests 7. :rocket: - deploy 8. :page_facing_up: - configuration file 9. :chart_with_upwards_trend: - visual reports
@@ -71,8 +69,7 @@ What might matter is the starting price for paid plan:
 * [Circle CI](https://circleci.com/pricing/) - starts with **39$/month.** (2 concurrent builds, &infin; projects, 500 minutes build time per month)
 * [GreenHouse](https://greenhouseci.com/pricing.html) - starts with **49$/month.** (1 concurrent build, &infin; projects, &infin; build time) 
 * [Drone.io](https://drone.io/pricing) - starts with **25$/month.** (1 concurrent build, 5 private projects, &infin; build time)
-* [Snap CI](https://snap-ci.com/plans) - starts with **30$/month.** (1 concurrent build, 5 private projects, &infin; build time)
-* [Buddybuild](https://www.buddybuild.com/pricing/) - starts with **49$/month.** (1 concurrent build, &infin; projects, &infin; build time)
+* [Buddybuild](https://www.buddybuild.com/pricing/) - starts with **79$/month.** (1 concurrent build, &infin; projects, &infin; build time)
 
 ---
 
