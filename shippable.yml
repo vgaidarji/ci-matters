@@ -12,6 +12,8 @@ build:
     image_tag: latest
     pull: true
   ci:
+      # install missing libs for Android
+      - echo y | sudo apt-get install libqt5widgets5
       # accept licenses - create a folder to store the license CRC
       - mkdir "$ANDROID_HOME/licenses" || true
       - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
