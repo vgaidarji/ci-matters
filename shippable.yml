@@ -8,7 +8,7 @@ env:
     - JACOCO_REPORT_LOCATION="app/build/reports/jacocoTestReport/jacocoTestReport.xml"
 build:
   pre_ci_boot:
-    image_name: codestare/shippable-android-buildimage
+    image_name: vgaidarji/docker-android-shippable
     image_tag: latest
     pull: true
   ci:
