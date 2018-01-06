@@ -38,6 +38,9 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
+install:
+  - echo "Overriding default Travis install step to avoid unnecessary './gradlew assemble'."
+
 # start Android emulator
 before_script:
   - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
