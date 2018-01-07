@@ -1,0 +1,60 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-23-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+      ADB_INSTALL_TIMEOUT: 20
+      TERM: dumb
+
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Download Dependencies
+          command: ./gradlew clean androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Setup emulator
+          command: sdkmanager "system-images;android-24;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;armeabi-v7a"
+      - run:
+          name: Launch emulator
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
+          background: true
+      - run:
+          name: Wait for emulator
+          command: ./wait_for_emulator.sh
+
+      - run:
+          name: Remove lock screen
+          command: |
+            adb shell input keyevent 82
+      - run:
+          name: Run Tests
+          command: ./gradlew testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard -PpreDexEnable=false -PversionCode=$CIRCLE_BUILD_NUM -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+      - run:
+          name: Run Tests 2
+          command: |
+            sleep 120
+            ./gradlew assembleDebug -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+            ./gradlew assembleDebugAndroidTest -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+
+            adb shell input keyevent 82 &
+            adb shell input keyevent 4 &
+
+            sleep 120
+            adb install app/build/outputs/apk/app-debug.apk
+            adb install app/build/outputs/apk/app-debug-androidTest.apk
+            adb shell am instrument -w -r -e debug false -e class com.vgaidarji.cimatters.LoginActivityTest com.vgaidarji.cimatters.test/android.support.test.runner.AndroidJUnitRunner
+
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - store_test_results:
+          path: app/build/test-results
