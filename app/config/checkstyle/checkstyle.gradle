@@ -10,7 +10,7 @@ task checkstyleMain(type: Checkstyle) {
 
     configProperties.checkstyleSuppressionsPath =
             file("${project.rootDir}/app/config/checkstyle/checkstyle-suppressions.xml")
-    configFile file("${project.rootDir}/app/config/checkstyle/checkstyle-yopeso.xml")
+    configFile file("${project.rootDir}/app/config/checkstyle/checkstyle.xml")
     source 'src/main/java'
     include '**/*.java'
     exclude '**/gen/**'
@@ -29,7 +29,7 @@ task checkstyleTest(type: Checkstyle) {
 
     configProperties.checkstyleSuppressionsPath =
             file("${project.rootDir}/app/config/checkstyle/checkstyle-suppressions.xml")
-    configFile file("${project.rootDir}/app/config/checkstyle/checkstyle-yopeso.xml")
+    configFile file("${project.rootDir}/app/config/checkstyle/checkstyle.xml")
     source 'src/test/java', 'src/androidTest/java'
     include '**/*.java'
     exclude '**/gen/**'
