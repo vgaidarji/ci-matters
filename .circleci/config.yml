@@ -21,7 +21,20 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Install Android dependencies
-          command: sdkmanager "system-images;android-25;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-25;default;armeabi-v7a"
+          command: |
+            sdkmanager "platform-tools"
+            sdkmanager "platforms;android-15"
+            sdkmanager "platforms;android-21"
+            sdkmanager "platforms;android-22"
+            sdkmanager "platforms;android-25"
+            sdkmanager "build-tools;24.0.3"
+            sdkmanager "extras;android;m2repository"
+            sdkmanager "extras;google;m2repository"
+            sdkmanager "extras;google;google_play_services"
+            sdkmanager "system-images;android-21;default;armeabi-v7a"
+      - run:
+          name: Setup emulator
+          command: sdkmanager "system-images;android-21;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-21;default;armeabi-v7a"
       - run:
           name: Launch emulator
           command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
@@ -29,14 +42,21 @@ jobs:
       - run:
           name: Wait for emulator
           command: |
-            ./wait_for_emulator.sh
+            circle-android wait-for-boot
+            #./wait_for_emulator.sh
+            # emulator isn't ready yet, wait 1 min more
+            # prevents APK installation error
+            #sleep 60
             # unlock the Lock Screen
-            adb shell input keyevent 82 &
-            adb shell input keyevent 4 &
+            #adb shell input keyevent 82 &
+            #adb shell input keyevent 4 &
       - run:
           name: Run UI tests
           command: |
-            sleep 120
+            # prepare test APK's
+            ./gradlew assembleDebug -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+            ./gradlew assembleDebugAndroidTest -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+            # manually install APK's and run instrumentation tests
             adb install app/build/outputs/apk/app-debug.apk
             adb install app/build/outputs/apk/app-debug-androidTest.apk
             adb shell am instrument -w -r -e debug false -e class com.vgaidarji.cimatters.LoginActivityTest com.vgaidarji.cimatters.test/android.support.test.runner.AndroidJUnitRunner
