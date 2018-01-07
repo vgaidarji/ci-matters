@@ -75,7 +75,7 @@ What might matter is the starting price for paid plan:
 
 ### Checkstyle
 
-Project uses custom Checkstyle [rules](https://github.com/vgaidarji/ci-matters/blob/master/app/config/checkstyle/checkstyle-yopeso.xml).
+Project uses custom Checkstyle [rules](https://github.com/vgaidarji/ci-matters/blob/master/app/config/checkstyle/checkstyle.xml).
 
 ---
 

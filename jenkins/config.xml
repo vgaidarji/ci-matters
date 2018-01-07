@@ -160,7 +160,7 @@
       <useAntStyleInclude>false</useAntStyleInclude>
     </fabric.beta.publisher.FabricBetaPublisher>
     <hudson.tasks.Mailer plugin="mailer@1.18">
-      <recipients>veaceslav.gaidarji@yopeso.com</recipients>
+      <recipients>veaceslav.gaidarji@gmail.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>

@@ -40,6 +40,6 @@ integrations:
         - integrationName: email
           type: email
           recipients:
-            - veaceslav.gaidarji@yopeso.com
+            - veaceslav.gaidarji@gmail.com
           on_success: change
           on_failure: always

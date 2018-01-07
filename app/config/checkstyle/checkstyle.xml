@@ -6,6 +6,8 @@
 <!-- Based on Square's config https://github.com/square/java-code-styles,
      and Google/Sun/Checkstyle configs - https://github.com/checkstyle/checkstyle/tree/master/src/main/resources
      Adapted by Veaceslav Gaidarji.
+
+     Initial version was based on Yopeso's Checkstyle configuration.
      -->
 
 <module name="Checker">

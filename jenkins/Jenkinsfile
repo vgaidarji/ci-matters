@@ -176,5 +176,5 @@ def uiTests() {
 }
 
 def notifyViaEmail() {
-    step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'veaceslav.gaidarji@yopeso.com', sendToIndividuals: true])
+    step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'veaceslav.gaidarji@gmail.com', sendToIndividuals: true])
 }
