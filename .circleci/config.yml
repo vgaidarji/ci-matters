@@ -41,25 +41,10 @@ jobs:
           background: true
       - run:
           name: Wait for emulator
-          command: |
-            circle-android wait-for-boot
-            #./wait_for_emulator.sh
-            # emulator isn't ready yet, wait 1 min more
-            # prevents APK installation error
-            #sleep 60
-            # unlock the Lock Screen
-            #adb shell input keyevent 82 &
-            #adb shell input keyevent 4 &
+          command: circle-android wait-for-boot
       - run:
           name: Run UI tests
-          command: |
-            # prepare test APK's
-            ./gradlew assembleDebug -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
-            ./gradlew assembleDebugAndroidTest -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
-            # manually install APK's and run instrumentation tests
-            adb install app/build/outputs/apk/app-debug.apk
-            adb install app/build/outputs/apk/app-debug-androidTest.apk
-            adb shell am instrument -w -r -e debug false -e class com.vgaidarji.cimatters.LoginActivityTest com.vgaidarji.cimatters.test/android.support.test.runner.AndroidJUnitRunner
+          command: ./gradlew connectedAndroidTest
       - run:
           name: Build and check
           command: ./gradlew testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard crashlyticsUploadDistributionDebug -PpreDexEnable=false -PversionCode=$CIRCLE_BUILD_NUM -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
