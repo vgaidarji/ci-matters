@@ -39,16 +39,23 @@ def getVersionName = { ->
 }
 
 def getFabricApiKey = { ->
+    def noKey = "0000000000000000000000000000000000000000"
     def key = project.hasProperty('fabricApiKey') ? fabricApiKey.toString() :
-            System.getenv("FABRIC_API_KEY") ?: "0000000000000000000000000000000000000000"
-    println "Using Fabric API key: " + key
+            System.getenv("FABRIC_API_KEY") ?: noKey
+    if (key == noKey)
+        println "Fabric API key not found"
+    else
+        println "Fabric API key found"
     return key
 }
 
 def getFabricApiSecret = { ->
     def secret = project.hasProperty('fabricApiSecret') ? fabricApiSecret.toString() :
             System.getenv("FABRIC_API_SECRET") ?: ""
-    println "Using Fabric API Secret: " + secret
+    if (secret.isEmpty())
+        println "Fabric API Secret not found"
+    else
+        println "Fabric API Secret found"
     return secret
 }
 
