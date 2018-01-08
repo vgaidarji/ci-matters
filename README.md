@@ -3,23 +3,23 @@ Integration (comparison) of different continuous integration services on Android
 
 ### CI's integration
 
-* [x] [Jenkins](https://github.com/vgaidarji/ci-matters/blob/master/JENKINS.md)
-* [x] [Travis CI](https://github.com/vgaidarji/ci-matters/blob/master/TRAVIS.md) [![Build Status](https://travis-ci.org/vgaidarji/ci-matters.svg?branch=master)](https://travis-ci.org/vgaidarji/ci-matters)
-* [x] [Bitrise](https://github.com/vgaidarji/ci-matters/blob/master/BITRISE.md) [![Build Status](https://www.bitrise.io/app/002b43ae8a42b6b1.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://www.bitrise.io/app/002b43ae8a42b6b1)
-* [x] [TeamCity](https://github.com/vgaidarji/ci-matters/blob/master/TEAM_CITY.md)
-* [x] [BuddyBuild](https://github.com/vgaidarji/ci-matters/blob/master/BUDDY_BUILD.md) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
-* [x] [Shippable](https://github.com/vgaidarji/ci-matters/blob/master/SHIPPABLE.md) [![Run Status](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/badge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c) [![Coverage Badge](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/coverageBadge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c)
- 
+* [x] [Jenkins](./JENKINS.md)
+* [x] [Travis CI](./TRAVIS.md) [![Build Status](https://travis-ci.org/vgaidarji/ci-matters.svg?branch=master)](https://travis-ci.org/vgaidarji/ci-matters)
+* [x] [Bitrise](./BITRISE.md) [![Build Status](https://www.bitrise.io/app/002b43ae8a42b6b1.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://www.bitrise.io/app/002b43ae8a42b6b1)
+* [x] [TeamCity](./TEAM_CITY.md)
+* [x] [BuddyBuild](./BUDDY_BUILD.md) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
+* [x] [Shippable](./SHIPPABLE.md) [![Run Status](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/badge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c) [![Coverage Badge](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/coverageBadge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c)
+* [x] [Circle](./CIRCLE.md) [![CircleCI](https://circleci.com/gh/vgaidarji/ci-matters.svg?style=svg)](https://circleci.com/gh/vgaidarji/ci-matters)
+
 ### TODO
 
 * [ ] GreenHouse
 * [ ] Gitlab CI
-* [ ] Circle CI
 * [ ] Drone.io
 
 ---
 
-# Comparison
+### Comparison
 
 #### Comparison table
 
@@ -32,9 +32,9 @@ This table should help people make a decision which CI to choose for the project
 | Travis CI     |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
 | Bitrise       |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
 | Shippable     |:star:|:star:|:star:|:star:|:x:|:cloud:|:radio:|:moneybag:|
+| Circle CI     |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
 | Buddybuild    |:star:|:star:|:x:|:x:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
 | Gitlab CI     |.|.|.|.|.|.|.|:moneybag:|
-| Circle CI     |.|.|.|.|.|.|.|:moneybag:|
 | GreenHouse    |.|.|.|.|.|.|.|:moneybag::moneybag:|
 | Drone.io      |.|.|.|.|.|.|.|:moneybag:|
 
@@ -43,7 +43,7 @@ This table should help people make a decision which CI to choose for the project
 10. :bust_in_silhouette::raised_hands:/:cloud: - self-hosted/cloud 11. :radio:/:computer: - CI user interface (old/new) 12. :dollar: - price
 
 
-#### Pricing
+### Pricing
 
 All listed CI's provide free plan with some restrictions like "open-source projects only" or "only 1 build node",
 but it's enough to configure the build process and check if CI suits or not.
@@ -57,6 +57,8 @@ Usually, some services provide limits on such plans for understandable reasons.
 
 CI's have different approaches and different paid plans.
 Check every CI pricing information for more details and choose the best option for you.
+
+:warning: *This information can get outdated very quickly as services evolve.* :warning:
 
 What might matter is the starting price for paid plan:
 
