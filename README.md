@@ -69,7 +69,7 @@ What might matter is the starting price for paid plan:
 * [Shippable](https://app.shippable.com/pricing.html) - starts with **25$/month.** (2 concurrent builds, &infin; projects, &infin; build time)
 * [Gitlab CI](https://about.gitlab.com/products/) - starts with **15$/month.** (2 concurrent builds, &infin; projects, &infin; build time)
 * [Circle CI](https://circleci.com/pricing/) - starts with **39$/month.** (2 concurrent builds, &infin; projects, 500 minutes build time per month)
-* [GreenHouse](https://greenhouseci.com/pricing.html) - starts with **49$/month.** (1 concurrent build, &infin; projects, &infin; build time)
+* [Nevercode.io](https://nevercode.io/pricing/) - starts with **5$/month.** (1 concurrent build, &infin; projects, 90 min. max build time)
 * [Drone.io](https://drone.io/pricing) - starts with **25$/month.** (1 concurrent build, 5 private projects, &infin; build time)
 * [Buddybuild](https://www.buddybuild.com/pricing/) - starts with **79$/month.** (1 concurrent build, &infin; projects, &infin; build time)
 
