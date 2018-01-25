@@ -73,6 +73,20 @@ What might matter is the starting price for paid plan:
 * [Drone.io](https://drone.io/pricing) - starts with **25$/month.** (1 concurrent build, 5 private projects, &infin; build time)
 * [Buddybuild](https://www.buddybuild.com/pricing/) - starts with **79$/month.** (1 concurrent build, &infin; projects, &infin; build time)
 
+#### Presentation
+
+I gave a talk back in 2016 and this repository was a technical part for it. I am describing there configured CI's
+and providing my personal opinion about which CI to choose depending on your needs (in :ru: language ).
+
+It doesn't contain information about ALL existing CI services, but should be a good start.
+
+[![CI comparison presentation](http://img.youtube.com/vi/81G_C1J5hQ4/0.jpg)](http://www.youtube.com/watch?v=81G_C1J5hQ4)
+
+In few words:
+- [Jenkins](https://jenkins.io/)/[TeamCity](https://www.jetbrains.com/teamcity/) for complex workflow
+- [Travis CI](https://travis-ci.org/)/[Circle CI](https://circleci.com/) for open-source projects
+- [Bitrise.io](https://bitrise.io/) for any workflow
+
 ---
 
 ### Checkstyle
@@ -102,4 +116,3 @@ and they will be automatically read from there during the build (no need to pass
 [![Coverage Status](https://coveralls.io/repos/github/vgaidarji/ci-matters/badge.svg)](https://coveralls.io/github/vgaidarji/ci-matters)
 
 `Coveralls` provides test coverage information. `COVERALLS_REPO_TOKEN` environment variable should be exported on the build machine.
-
