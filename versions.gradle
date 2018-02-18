@@ -34,7 +34,8 @@ versions.moshi = "1.5.0"
 versions.databinding = "3.0.1"
 versions.jacoco_plugin = "0.1.1"
 versions.fabric_plugin = "1.25.1"
-versions.coveralls_plugin="2.7.1"
+versions.coveralls_plugin = "2.7.1"
+versions.butterknife = "8.8.1"
 
 def deps = [:]
 
@@ -108,6 +109,11 @@ kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
 kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 
+def butterknife = [:]
+butterknife.main = "com.jakewharton:butterknife:$versions.butterknife"
+butterknife.compiler = "com.jakewharton:butterknife-compiler:$versions.butterknife"
+
+deps.butterknife = butterknife
 deps.kotlin = kotlin
 deps.paging = "android.arch.paging:runtime:$versions.paging"
 deps.glide = "com.github.bumptech.glide:glide:$versions.glide"

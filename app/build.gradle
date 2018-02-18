@@ -112,18 +112,16 @@ repositories {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation deps.support.app_compat
     // Butter Knife
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation deps.butterknife.main
+    kapt deps.butterknife.compiler
 
-    implementation 'com.android.support:design:27.0.2'
+    implementation deps.support.design
     implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-all:2.0.2-beta'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    testImplementation  deps.junit
+    testImplementation deps.mockito.all
+    androidTestImplementation deps.espresso.core
 }
