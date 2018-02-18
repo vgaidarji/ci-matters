@@ -148,6 +148,7 @@ def addRepos(RepositoryHandler handler) {
   handler.jcenter()
   handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
   handler.maven { url 'https://maven.fabric.io/public' }
+  handler.mavenCentral()
 }
 
 ext.addRepos = this.&addRepos
