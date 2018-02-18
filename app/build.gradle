@@ -3,6 +3,9 @@ apply plugin: 'io.fabric'
 apply from: 'config/quality.gradle'
 apply from: 'config/jacoco.gradle'
 apply from: 'config/coveralls.gradle'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 def versionMajor = 1
 def versionMinor = 0
@@ -111,11 +114,11 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.0.2'
     // Butter Knife
     implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 
     implementation 'com.android.support:design:27.0.2'
     implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
-        transitive = true;
+        transitive = true
     }
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-all:2.0.2-beta'
