@@ -69,12 +69,12 @@ task fabricProperties() {
 preBuild.dependsOn('fabricProperties')
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.vgaidarji.cimatters"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode getVersionCode()
         versionName getVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -107,16 +107,19 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.jakewharton:butterknife:5.1.1'
-    compile 'com.android.support:design:25.0.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    // Butter Knife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    implementation 'com.android.support:design:27.0.2'
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true;
     }
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-all:2.0.2-beta'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-all:2.0.2-beta'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }

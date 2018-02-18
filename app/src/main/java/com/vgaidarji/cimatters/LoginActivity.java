@@ -7,19 +7,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    @InjectView(R.id.coordinator)
+    @BindView(R.id.coordinator)
     CoordinatorLayout coordinatorLayout;
-    @InjectView(R.id.edit_text_email)
+    @BindView(R.id.edit_text_email)
     EditText editTextEmail;
-    @InjectView(R.id.edit_text_password)
+    @BindView(R.id.edit_text_password)
     EditText editTextPassword;
-    @InjectView(R.id.button_login)
+    @BindView(R.id.button_login)
     Button buttonLogin;
 
     LoginPresenter presenter;
@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setTitle(getString(R.string.activity_login));
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         presenter = new LoginPresenter(this);
     }
 
