@@ -98,6 +98,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+        // Updating to 1.8 will make the espresso test to not be found
     }
     lintOptions {
         checkReleaseBuilds false
