@@ -118,10 +118,12 @@ dependencies {
     kapt deps.butterknife.compiler
 
     implementation deps.support.design
-    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+    implementation(deps.crashlytics) {
         transitive = true
     }
     testImplementation  deps.junit
     testImplementation deps.mockito.all
-    androidTestImplementation deps.espresso.core
+    androidTestImplementation (deps.espresso.core, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }

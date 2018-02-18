@@ -133,6 +133,7 @@ deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_g
 deps.android_databinding = "com.android.databinding:compiler:$versions.databinding"
 deps.jacoco_plugin = "com.dicedmelon.gradle:jacoco-android:$versions.jacoco_plugin"
 deps.fabric_plugin = "io.fabric.tools:gradle:1.25.1"
+deps.crashlytics = "com.crashlytics.sdk.android:crashlytics:2.9.0@aar"
 deps.coveralls_plugin = "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.7.1"
 ext.deps = deps
 
