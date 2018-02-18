@@ -3,6 +3,9 @@ apply plugin: 'io.fabric'
 apply from: 'config/quality.gradle'
 apply from: 'config/jacoco.gradle'
 apply from: 'config/coveralls.gradle'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 def versionMajor = 1
 def versionMinor = 0
@@ -69,12 +72,12 @@ task fabricProperties() {
 preBuild.dependsOn('fabricProperties')
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.vgaidarji.cimatters"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode getVersionCode()
         versionName getVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -95,6 +98,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+        // Updating to 1.8 will make the espresso test to not be found
     }
     lintOptions {
         checkReleaseBuilds false
@@ -107,16 +111,22 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.jakewharton:butterknife:5.1.1'
-    compile 'com.android.support:design:25.0.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
-        transitive = true;
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation deps.support.app_compat
+    // Butter Knife
+    implementation deps.butterknife.main
+    kapt deps.butterknife.compiler
+
+    implementation deps.support.design
+    implementation(deps.crashlytics) {
+        transitive = true
     }
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-all:2.0.2-beta'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    testImplementation  deps.junit
+    testImplementation deps.mockito.all
+    androidTestImplementation (deps.espresso.core, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    // Kotlin
+    implementation deps.kotlin.stdlib
+    implementation deps.kotlin.reflect
 }

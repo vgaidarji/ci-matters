@@ -17,7 +17,7 @@ task checkstyleMain(type: Checkstyle) {
     exclude '**/R.java'
     exclude '**/BuildConfig.java'
     reports {
-        xml.destination "$project.buildDir/reports/checkstyle/main.xml"
+        xml.destination file("${project.buildDir}/reports/checkstyle/main.xml")
     }
     // empty classpath
     classpath = files()
@@ -36,7 +36,7 @@ task checkstyleTest(type: Checkstyle) {
     exclude '**/R.java'
     exclude '**/BuildConfig.java'
     reports {
-        xml.destination "$project.buildDir/reports/checkstyle/test.xml"
+        xml.destination file("${project.buildDir}/reports/checkstyle/test.xml")
     }
     // empty classpath
     classpath = files()
