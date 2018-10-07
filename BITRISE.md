@@ -20,7 +20,7 @@ Bitrise integrates with wide [list of services](https://www.bitrise.io/integrati
 Bitrise automatically registers webhook, which makes our lives even simplier.
 
     <img src="/screenshots/bitrise_add_new_app_3.png">
-    
+
 4. Configure build steps
     
     <img src="/screenshots/bitrise_build_steps.png">
@@ -28,12 +28,9 @@ Bitrise automatically registers webhook, which makes our lives even simplier.
     [.bitrise.yml](https://github.com/vgaidarji/ci-matters/tree/master/.bitrise.yml) contains full configuration without UI tests.
     
     [.bitrise-with-ui-tests.yml](https://github.com/vgaidarji/ci-matters/tree/master/.bitrise-with-ui-tests.yml) contains full configuration + UI tests.
-    
+    It uses ["Virtual Device Testing for Android step"](https://blog.bitrise.io/introducing-solid-and-snappy-virtual-device-testing-for-android).
+
     These configurations can be imported to bitrise.io. To achieve that create new workflow or edit existing, navigate to `Workflow Editor -> bitrise.yml` and paste file content there.
-    
-    `.bitrise-with-ui-tests.yml` configuration **might abort builds** on bitrise.io due to the limit of 600 seconds maximum on a free plan.
-    
-    <img src="/screenshots/bitrise_aborted_build_timeout.png">
 
 5. Add environment variables
 
@@ -41,4 +38,4 @@ Bitrise automatically registers webhook, which makes our lives even simplier.
     
 6. If everything goes fine we get successful build
 
-    <img src="/screenshots/bitrise_successful_build_no_ui_tests.png">
+    <img src="/screenshots/bitrise_successful_build.png">
