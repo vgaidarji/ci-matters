@@ -1,6 +1,6 @@
 # Bitrise.io
 
-[![Build Status](https://www.bitrise.io/app/002b43ae8a42b6b1.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://www.bitrise.io/app/002b43ae8a42b6b1)
+[![Build Status](https://app.bitrise.io/app/002b43ae8a42b6b1/status.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://app.bitrise.io/app/002b43ae8a42b6b1)
 
 [Bitrise](https://bitrise.io) is one of the modern and very promising CI services. Read [how Bitrise works](http://devcenter.bitrise.io/v1.0/docs/how-bitrise-works) article first to have better understanding. 
 
