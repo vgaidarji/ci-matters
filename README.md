@@ -5,7 +5,7 @@ Integration (comparison) of different continuous integration services on Android
 
 * [x] [Jenkins](./JENKINS.md)
 * [x] [Travis CI](./TRAVIS.md) [![Build Status](https://travis-ci.org/vgaidarji/ci-matters.svg?branch=master)](https://travis-ci.org/vgaidarji/ci-matters)
-* [x] [Bitrise](./BITRISE.md) [![Build Status](https://www.bitrise.io/app/002b43ae8a42b6b1.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://www.bitrise.io/app/002b43ae8a42b6b1)
+* [x] [Bitrise](./BITRISE.md) [![Build Status](https://app.bitrise.io/app/002b43ae8a42b6b1/status.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://app.bitrise.io/app/002b43ae8a42b6b1)
 * [x] [TeamCity](./TEAM_CITY.md)
 * [x] [BuddyBuild](./BUDDY_BUILD.md) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
 * [x] [Shippable](./SHIPPABLE.md) [![Run Status](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/badge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c) [![Coverage Badge](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/coverageBadge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c)
