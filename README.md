@@ -10,6 +10,7 @@ Integration (comparison) of different continuous integration services on Android
 * [x] [BuddyBuild](./BUDDY_BUILD.md) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
 * [x] [Shippable](./SHIPPABLE.md) [![Run Status](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/badge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c) [![Coverage Badge](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/coverageBadge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c)
 * [x] [Circle](./CIRCLE.md) [![CircleCI](https://circleci.com/gh/vgaidarji/ci-matters.svg?style=svg)](https://circleci.com/gh/vgaidarji/ci-matters)
+* [x] [GitHub Actions](./GITHUB_ACTIONS.md)
 
 ### TODO
 
@@ -34,6 +35,7 @@ This table should help people make a decision which CI to choose for the project
 | Shippable     |:star:|:star:|:star:|:star:|:x:|:cloud:|:radio:|:moneybag:|
 | Circle CI     |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
 | Buddybuild    |:star:|:star:|:x:|:x:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
+| GitHub Actions|.|.|.|.|.|.|.|.|
 | Gitlab CI     |.|.|.|.|.|.|.|:moneybag:|
 | Nevecode.io   |.|.|.|.|.|.|.|:moneybag::moneybag:|
 | Drone.io      |.|.|.|.|.|.|.|:moneybag:|
