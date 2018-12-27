@@ -1,6 +1,6 @@
 workflow "Build, Test and Distribute" {
   on = "push"
-  resolves = "Publish Code Coverage"
+  resolves = "Run UI Tests"
 }
 
 action "Build" {
@@ -17,8 +17,9 @@ action "Check" {
 }
 
 action "Run UI Tests" {
-  needs = ["Build"]
-  uses = "./.github/android-github-actions"
+  secrets = ["FABRIC_API_KEY", "FABRIC_API_SECRET"]
+  uses = "./.github/android-emulator-github-actions"
+  args = "ui-tests-on-emulator"
 }
 
 action "Distribute" {
