@@ -10,17 +10,19 @@ action "Build" {
 }
 
 action "Check" {
+  needs = ["Build"]
   uses = "./.github/android-github-actions"
   secrets = ["FABRIC_API_KEY", "FABRIC_API_SECRET"]
   args = "./gradlew testDebug jacocoTestReport checkstyle pmd jdepend lintDebug buildDashboard -PpreDexEnable=false"
 }
 
 action "Run UI Tests" {
+  needs = ["Build"]
   uses = "./.github/android-github-actions"
 }
 
 action "Distribute" {
-  needs = ["Build", "Check", "Run UI Tests"]
+  needs = ["Check", "Run UI Tests"]
   uses = "./.github/android-github-actions"
   secrets = ["FABRIC_API_KEY", "FABRIC_API_SECRET"]
   args = "./gradlew crashlyticsUploadDistributionDebug -PpreDexEnable=false"
