@@ -1,4 +1,4 @@
-FROM phusion/baseimage
+FROM phusion/baseimage:0.11
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-oracle \
     ANDROID_HOME=/opt/android-sdk \
