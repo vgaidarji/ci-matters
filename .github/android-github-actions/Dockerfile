@@ -67,6 +67,18 @@ RUN rm -rf /var/lib/apt/lists/*
 ENV ANDROID_EMULATOR_FORCE_32BIT=true
 ENV ANDROID_SDK_HOME=/root/.android/ 
 
+###################
+# GitHub Action description
+###################
+LABEL "com.github.actions.name"="Android"
+LABEL "com.github.actions.description"="Build Android projects and run UI tests"
+LABEL "com.github.actions.icon"="smartphone"
+LABEL "com.github.actions.color"="green"
+
+LABEL "repository"="http://github.com/actions"
+LABEL "homepage"="http://github.com/actions"
+LABEL "maintainer"="Veaceslav Gaidarji <veaceslav.gaidarji@gmail.com>"
+
 COPY ui-tests-on-emulator.sh /usr/bin/ui-tests-on-emulator
 COPY kill-running-emulators.sh /usr/bin/kill-running-emulators
 COPY wait-for-emulator.sh /usr/bin/wait-for-emulator
