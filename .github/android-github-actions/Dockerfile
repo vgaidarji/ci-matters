@@ -61,5 +61,15 @@ RUN echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
 RUN echo "android.builder.sdkDownload=true" >> ~/.gradle/gradle.properties
 RUN rm -rf /var/lib/apt/lists/*
 
+##################
+# Set mandatory environment variables
+##################
+ENV ANDROID_EMULATOR_FORCE_32BIT=true
+ENV ANDROID_SDK_HOME=/root/.android/ 
+
+COPY ui-tests-on-emulator.sh /usr/bin/ui-tests-on-emulator
+COPY kill-running-emulators.sh /usr/bin/kill-running-emulators
+COPY wait-for-emulator.sh /usr/bin/wait-for-emulator
+COPY unlock-emulator-screen.sh /usr/bin/unlock-emulator-screen
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
