@@ -6,7 +6,7 @@ workflow "Build, Test and Distribute" {
 action "Build" {
   uses = "./.github/android-github-actions"
   secrets = ["FABRIC_API_KEY", "FABRIC_API_SECRET"]
-  args = "./gradlew assembleDebug"
+  args = "./gradlew assembleDebug -PpreDexEnable=false"
 }
 
 action "Check" {
