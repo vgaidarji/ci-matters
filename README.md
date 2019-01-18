@@ -10,6 +10,7 @@ Integration (comparison) of different continuous integration services on Android
 * [x] [BuddyBuild](./BUDDY_BUILD.md) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
 * [x] [Shippable](./SHIPPABLE.md) [![Run Status](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/badge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c) [![Coverage Badge](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/coverageBadge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c)
 * [x] [Circle](./CIRCLE.md) [![CircleCI](https://circleci.com/gh/vgaidarji/ci-matters.svg?style=svg)](https://circleci.com/gh/vgaidarji/ci-matters)
+* [x] [GitHub Actions](./GITHUB_ACTIONS.md)
 
 ### TODO
 
@@ -34,14 +35,14 @@ This table should help people make a decision which CI to choose for the project
 | Shippable     |:star:|:star:|:star:|:star:|:x:|:cloud:|:radio:|:moneybag:|
 | Circle CI     |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
 | Buddybuild    |:star:|:star:|:x:|:x:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
+| GitHub Actions|:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:|
 | Gitlab CI     |.|.|.|.|.|.|.|:moneybag:|
 | Nevecode.io   |.|.|.|.|.|.|.|:moneybag::moneybag:|
 | Drone.io      |.|.|.|.|.|.|.|:moneybag:|
 
-1. :dancers: - clone 2. :construction_worker: - build 3. :mag_right::bug: - test 4. :vertical_traffic_light: - analyse 5. :mailbox_with_mail: - notify
-6. :iphone::eyes: - UI tests 7. :rocket: - deploy 8. :page_facing_up: - configuration file 9. :chart_with_upwards_trend: - visual reports
-10. :bust_in_silhouette::raised_hands:/:cloud: - self-hosted/cloud 11. :radio:/:computer: - CI user interface (old/new) 12. :dollar: - price
-
+|. |. |.|. |. |. |. |. |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|:dancers: clone<br>:construction_worker: build <br>:mag_right::bug: test <br>:vertical_traffic_light: analyse<br>:mailbox_with_mail: notify|:iphone::eyes: UI tests |:rocket: deploy|:page_facing_up: configuration file |:chart_with_upwards_trend: visual reports|:bust_in_silhouette::raised_hands:/:cloud: self-hosted/cloud |:radio:/:computer: CI user interface (old/new)|:dollar: price|
 
 ### Pricing
 
