@@ -11,7 +11,7 @@ jobs:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
       with:
-        args: "./gradlew assembleDebug -PpreDexEnable=false"
+        args: "sdkmanager \"platforms;android-26\" && ./gradlew assembleDebug -PpreDexEnable=false"
     - name: Check
       uses: vgaidarji/android-github-actions/build@v1.0.0
       env:
