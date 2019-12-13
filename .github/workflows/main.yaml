@@ -6,14 +6,14 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build
-      uses: vgaidarji/android-github-actions-build@migrate-from-original-repo
+      uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
       with:
         args: "sdkmanager \"platforms;android-26\" && ./gradlew assembleDebug -PpreDexEnable=false"
     - name: Check
-      uses: vgaidarji/android-github-actions-build@migrate-from-original-repo
+      uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
@@ -27,14 +27,14 @@ jobs:
       with:
         args: "./gradlew testDebug jacocoTestReport checkstyle pmd jdepend lintDebug buildDashboard -PpreDexEnable=false"
     - name: Distribute
-      uses: vgaidarji/android-github-actions-build@migrate-from-original-repo
+      uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
       with:
         args: "./gradlew crashlyticsUploadDistributionDebug -PpreDexEnable=false"
     - name: Publish Code Coverage
-      uses: vgaidarji/android-github-actions-build@migrate-from-original-repo
+      uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       with:
