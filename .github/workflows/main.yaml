@@ -4,6 +4,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: gitboard-io/gitboard-action@main
+      with:
+      username: ${{ secrets.GITBOARD_USERNAME }}
+      key: ${{ secrets.GITBOARD_SECRET_TOKEN }}
     - uses: actions/checkout@v1
     - name: Build
       uses: vgaidarji/android-github-actions-build@v1.0.1
