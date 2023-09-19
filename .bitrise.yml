@@ -9,11 +9,11 @@ trigger_map:
 workflows:
   primary:
     steps:
-    - activate-ssh-key@4.0.3:
+    - activate-ssh-key@4.1.0:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4.0.12: {}
-    - install-missing-android-tools@2.2.0: {}
-    - script@1.1.5:
+    - git-clone@8.1.1: {}
+    - install-missing-android-tools@3.2.0: {}
+    - script@1.2.1:
         inputs:Switched to shell script from Gradle runner at bitrise (#36)
         - content: |-
             #!/usr/bin/env bash
@@ -39,12 +39,12 @@ workflows:
         - coveralls_task: coveralls -PversionCode=$BITRISE_BUILD_NUMBER -PfabricApiKey=$FABRIC_API_KEY
             -PfabricApiSecret=$FABRIC_API_SECRET
         - coveralls_repo_token: "$COVERALLS_REPO_TOKEN"
-    - deploy-to-bitrise-io@1.3.18:
+    - deploy-to-bitrise-io@2.5.0:
         title: Deploy test reports to Bitrise.io
         inputs:
         - deploy_path: "$BITRISE_SOURCE_DIR/app/build/reports/jacocoTestReport/"
         - notify_email_list: ''
-    - deploy-to-bitrise-io@1.3.18:
+    - deploy-to-bitrise-io@2.5.0:
         title: Deploy APK to Bitrise.io
 app:
   envs:
