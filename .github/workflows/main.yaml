@@ -11,27 +11,27 @@ jobs:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
       with:
-        args: "sdkmanager 'platforms;android-26' && ./gradlew assembleDebug -PpreDexEnable=false"
+        args: "sdkmanager 'platforms;android-26' && ./gradlew assembleDebug"
     - name: Check
       uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
       with:
-        args: "./gradlew testDebug jacocoTestReport checkstyle pmd jdepend lintDebug buildDashboard -PpreDexEnable=false"
+        args: "./gradlew testDebug jacocoTestReport checkstyle pmd jdepend lintDebug buildDashboard"
     - name: Distribute
       uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
       with:
-        args: "./gradlew crashlyticsUploadDistributionDebug -PpreDexEnable=false"
+        args: "./gradlew crashlyticsUploadDistributionDebug"
     - name: Publish Code Coverage
       uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       with:
-        args: "./gradlew coveralls -PpreDexEnable=false"
+        args: "./gradlew coveralls"
   androidTest:
     runs-on: macOS-latest
     steps:

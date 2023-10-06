@@ -25,20 +25,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-project.ext {
-    if (project.hasProperty('preDexEnable')) {
-        project.ext.preDexLibs = project.properties['preDexEnable'].equals('true')
-    } else {
-        project.ext.preDexLibs = true
-    }
-}
-subprojects {
-    project.plugins.whenPluginAdded { plugin ->
-        if ("com.android.build.gradle.AppPlugin".equals(plugin.class.name)) {
-            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
-        } else if ("com.android.build.gradle.LibraryPlugin".equals(plugin.class.name)) {
-            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
-        }
-    }
-}
