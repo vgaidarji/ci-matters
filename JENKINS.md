@@ -68,7 +68,7 @@ In order to build the project we need to have environment variables set in Jenki
     
     In "Tasks" section  we need to specify a list of Gradle tasks to be invoked.
     
-    For example: `clean connectedAndroidTest assembleDebug testDebug jacocoTestReport checkstyle pmd jdepend lintDebug buildDashboard  -PversionCode=${BUILD_NUMBER}  -PfabricApiKey="YOUR_KEY" -PfabricApiSecret="YOUR_SECRET"`
+    For example: `clean connectedAndroidTest assembleDebug testDebug jacocoTestReport checkstyle pmd lintDebug buildDashboard  -PversionCode=${BUILD_NUMBER}  -PfabricApiKey="YOUR_KEY" -PfabricApiSecret="YOUR_SECRET"`
     
 6. Configure reports 
     

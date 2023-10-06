@@ -16,7 +16,7 @@ workflows:
     - gradle-runner@1.8.3:
         title: Gradle Build/Test/Analyse/Distribute
         inputs:
-        - gradle_task: assembleDebug testDebug jacocoTestReport checkstyle pmd jdepend
+        - gradle_task: assembleDebug testDebug jacocoTestReport checkstyle pmd
             lintDebug buildDashboard assembleDebugAndroidTest crashlyticsUploadDistributionDebug
             -PversionCode=$BITRISE_BUILD_NUMBER -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
         - mapping_file_exclude_filter: ''

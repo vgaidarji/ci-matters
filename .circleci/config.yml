@@ -50,7 +50,7 @@ jobs:
           command: ./gradlew connectedAndroidTest
       - run:
           name: Build and check
-          command: ./gradlew testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard crashlyticsUploadDistributionDebug -PversionCode=$CIRCLE_BUILD_NUM -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+          command: ./gradlew testDebug jacocoTestReport coveralls checkstyle pmd lintDebug buildDashboard crashlyticsUploadDistributionDebug -PversionCode=$CIRCLE_BUILD_NUM -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
       - store_artifacts:
           path: app/build/outputs
           destination: outputs

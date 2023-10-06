@@ -30,7 +30,7 @@ build:
       - android list targets
       - ./ui_tests_on_emulator.sh emulator64-arm
       # one line build steps (don't want to pass paramaters to every gradlew command)
-      - ./gradlew clean assembleDebug testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard crashlyticsUploadDistributionDebug -PversionCode=$BUILD_NUMBER
+      - ./gradlew clean assembleDebug testDebug jacocoTestReport coveralls checkstyle pmd lintDebug buildDashboard crashlyticsUploadDistributionDebug -PversionCode=$BUILD_NUMBER
       # convert JaCoCo to cobertura
       - wget -O cover2cover.py https://raw.githubusercontent.com/rix0rrr/cover2cover/master/cover2cover.py
       - python cover2cover.py $JACOCO_REPORT_LOCATION app/src/main/java > shippable/codecoverage/coverage.xml

@@ -18,7 +18,7 @@ jobs:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
       with:
-        args: "./gradlew testDebug jacocoTestReport checkstyle pmd jdepend lintDebug buildDashboard"
+        args: "./gradlew testDebug jacocoTestReport checkstyle pmd lintDebug buildDashboard"
     - name: Distribute
       uses: vgaidarji/android-github-actions-build@v1.0.1
       env:

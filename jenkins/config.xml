@@ -44,7 +44,7 @@
     <hudson.plugins.gradle.Gradle plugin="gradle@1.25">
       <description></description>
       <switches></switches>
-      <tasks>clean connectedAndroidTest assembleDebug testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard  -PversionCode=${BUILD_NUMBER}  -PfabricApiKey=&quot;&quot; -PfabricApiSecret=&quot;&quot;</tasks>
+      <tasks>clean connectedAndroidTest assembleDebug testDebug jacocoTestReport coveralls checkstyle pmd lintDebug buildDashboard  -PversionCode=${BUILD_NUMBER}  -PfabricApiKey=&quot;&quot; -PfabricApiSecret=&quot;&quot;</tasks>
       <rootBuildScriptDir>${WORKSPACE}/app/</rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>(Default)</gradleName>

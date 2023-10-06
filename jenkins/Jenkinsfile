@@ -42,7 +42,7 @@ def buildDebug() {
 }
 
 def staticCodeAnalysis() {
-    sh "./gradlew checkstyle pmd jdepend lintDebug buildDashboard -PversionCode=${env.BUILD_NUMBER} -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
+    sh "./gradlew checkstyle pmd lintDebug buildDashboard -PversionCode=${env.BUILD_NUMBER} -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
     publishLintResults()
     publishJunitResults()
     publishJaCoCoCoverage()

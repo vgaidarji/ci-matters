@@ -1,6 +1,5 @@
 apply plugin: 'pmd'
 apply plugin: 'build-dashboard'
-apply plugin: 'jdepend'
 apply from: 'config/checkstyle/checkstyle.gradle'
 
 android {
@@ -47,15 +46,5 @@ task pmd(type: Pmd) {
                 include(name: '**/*.java')
             }
         }
-    }
-}
-
-task(jdepend, type: JDepend) {
-    group = "Verification"
-    description 'Run JDepend plugin'
-    classesDir = file('build/intermediates/classes/debug/')
-    reports {
-        xml.enabled true
-        text.enabled false
     }
 }
