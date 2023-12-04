@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
 //apply from: 'config/quality.gradle'
 //apply from: 'config/jacoco.gradle'
 //apply from: 'config/coveralls.gradle'
@@ -64,6 +65,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    namespace 'com.vgaidarji.cimatters'
 }
 
 dependencies {
