@@ -5,15 +5,15 @@ ext {
 }
 
 jacoco {
-    toolVersion = "0.7.5.201505241946"
-    reportsDir = file("$buildDir/reports")
+    toolVersion = "0.8.11"
+    reportsDirectory = file("$buildDir/reports")
 }
 
 task jacocoTestReport(type:JacocoReport, dependsOn: "testDebugUnitTest") {
     group = "Reporting"
     description = "Generate Jacoco coverage reports for Debug build"
     classDirectories = fileTree(
-            dir: "$buildDir/intermediates/classes/debug",
+            dir: "$buildDir/tmp/kotlin-classes/debug",
             excludes: ['**/R.class',
                        '**/R$*.class',
                        '**/*$ViewBinder*.*',
@@ -30,8 +30,8 @@ task jacocoTestReport(type:JacocoReport, dependsOn: "testDebugUnitTest") {
         println '##teamcity[jacocoReport dataPath=\'app/build/jacoco/testDebugUnitTest.exec\' includes=\'com.vgaidarji.cimatters.*\' excludes=\'com.vgaidarji.cimatters.test.* **/*R*.* **/*Injector*.* **/*Activity*.* .*R .*CiMattersApplication .*BuildConfig .*Activity .*Test \']'
     }
     reports {
-        xml.enabled = true
-        html.enabled = true
+        xml.required = true
+        html.required = true
     }
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)

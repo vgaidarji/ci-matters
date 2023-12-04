@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
 //apply from: 'config/quality.gradle'
-//apply from: 'config/jacoco.gradle'
+apply from: 'config/jacoco.gradle'
 //apply from: 'config/coveralls.gradle'
 
 def versionMajor = 1
@@ -49,9 +49,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        debug {
-            testCoverageEnabled = true
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
