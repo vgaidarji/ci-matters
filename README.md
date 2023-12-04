@@ -90,12 +90,6 @@ In few words:
 
 ---
 
-### Checkstyle
-
-Project uses custom Checkstyle [rules](https://github.com/vgaidarji/ci-matters/blob/master/app/config/checkstyle/checkstyle.xml).
-
----
-
 ### Fabric/Crashlytics project configuration
 
 In order to upload APK to Crashlytics project should have following configuration:

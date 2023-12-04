@@ -1,6 +1,4 @@
-apply plugin: 'pmd'
 apply plugin: 'build-dashboard'
-apply from: 'config/checkstyle/checkstyle.gradle'
 
 android {
     lintOptions {
@@ -13,38 +11,4 @@ android {
     }
 }
 
-task pmd(type: Pmd) {
-    description 'Run PMD/CPD analysis.'
-    group 'verification'
-
-    ignoreFailures = true
-    ruleSetFiles = files("${project.rootDir}/app/config/pmd/pmd-ruleset.xml")
-    ruleSets = []
-
-    source = fileTree('src/main/java')
-    include '**/*.java'
-    exclude '**/gen/**'
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-        xml {
-            destination "$project.buildDir/reports/pmd/pmd.xml"
-        }
-        html {
-            destination "$project.buildDir/reports/pmd/pmd.html"
-        }
-    }
-
-    doLast {
-        File outDir = new File("$project.buildDir/reports/pmd/")
-        ant.taskdef(name: 'cpd', classname: 'net.sourceforge.pmd.cpd.CPDTask',
-                classpath: configurations.pmd.asPath)
-        ant.cpd(minimumTokenCount: '50', format: 'xml',
-                outputFile: new File(outDir, 'cpd.xml')) {
-            fileset(dir: "src/main/java") {
-                include(name: '**/*.java')
-            }
-        }
-    }
-}
+// TODO: configure detekt

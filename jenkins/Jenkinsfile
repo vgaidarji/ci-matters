@@ -42,11 +42,10 @@ def buildDebug() {
 }
 
 def staticCodeAnalysis() {
-    sh "./gradlew checkstyle pmd lintDebug buildDashboard -PversionCode=${env.BUILD_NUMBER} -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
+    sh "./gradlew lintDebug buildDashboard -PversionCode=${env.BUILD_NUMBER} -PfabricApiKey=${env.FABRIC_API_KEY} -PfabricApiSecret=${env.FABRIC_API_SECRET}"
     publishLintResults()
     publishJunitResults()
     publishJaCoCoCoverage()
-    publishCheckstyleResults()
     publishHtmlReports()
 }
 
@@ -75,15 +74,6 @@ def publishJaCoCoCoverage() {
         exclusionPattern: '**/R.class, **/R$*.class, **/*$ViewBinder*.*, **/*$InjectAdapter*.*, **/*Injector*.*, **/BuildConfig.*, **/Manifest*.*, **/*Test*.*, **/*Activity*.*, **/CiMattersApplication*.*, android/**/*.*'])
 }
 
-def publishCheckstyleResults() {
-    step([$class: "CheckStylePublisher",
-      canComputeNew: false,
-      defaultEncoding: "",
-      healthy: "",
-      pattern: "**/reports/checkstyle/**.xml",
-      unHealthy: ""])
-}
-
 def publishHtmlReports() {
     publishHTML([allowMissing: true,
         alwaysLinkToLastBuild: true,
@@ -97,18 +87,6 @@ def publishHtmlReports() {
         reportDir: 'app/build/reports/androidTests/connected',
         reportFiles: 'index.html',
         reportName: 'UI tests report'])
-    publishHTML([allowMissing: true,
-        alwaysLinkToLastBuild: true,
-        keepAll: true,
-        reportDir: 'app/build/reports/checkstyle',
-        reportFiles: 'main.html',
-        reportName: 'Checkstyle main report'])
-    publishHTML([allowMissing: true,
-        alwaysLinkToLastBuild: true,
-        keepAll: true,
-        reportDir: 'app/build/reports/checkstyle',
-        reportFiles: 'test.html',
-        reportName: 'Checkstyle test report'])
     publishHTML([allowMissing: true,
         alwaysLinkToLastBuild: true,
         keepAll: true,
