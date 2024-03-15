@@ -17,9 +17,9 @@ jobs:
     - name: Check
       run: "./gradlew testDebug jacocoTestReport lintDebug buildDashboard"
     - name: Distribute
-      env:
-        FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON_B64 }}
-      run: "./gradlew appDistributionUploadDebug"
+      run: |
+        echo '${{ secrets.FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON }}' > $RUNNER_TEMP/credentials.json
+        export FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON=$RUNNER_TEMP/credentials.json && ./gradlew appDistributionUploadDebug
     - name: Publish Code Coverage
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
