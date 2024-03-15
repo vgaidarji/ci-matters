@@ -89,19 +89,15 @@ In few words:
 
 ---
 
-### Fabric/Crashlytics project configuration
+### Firebase App Distribution project configuration
 
-In order to upload APK to Crashlytics project should have following configuration:
-`${projectDir}/fabric.properties` file with `apiSecret` and `io.fabric.ApiKey` in AndroidManifest.xml([1](https://github.com/vgaidarji/ci-matters/blob/master/app/src/main/AndroidManifest.xml#L17),
-[2](https://github.com/vgaidarji/ci-matters/blob/master/app/build.gradle#L59)) file.
-**Both keys should not be uploaded to the repository for security reasons!**
+In order to distribute Android builds to Firebase, Google Service Account ([link](https://firebase.google.com/docs/app-distribution/android/distribute-gradle#authenticate)) credentials should be created.
+Service Account then needs to be saved in secure place and exported in `FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON={service-account.json}` environment variable on CI. 
+Use secret variables on CI/repo level for this.
 
-Pass both parameters to your build from command line:
+Distribute the build using following command:
 
-    ./gradlew -PfabricApiKey="YOUR_API_KEY" -PfabricApiSecret="YOUR_API_SECRET" crashlyticsUploadDistributionDebug
-
-or export these keys as environment variables on a build machine
-and they will be automatically read from there during the build (no need to pass keys as parameters in this case).
+    ./gradlew appDistributionUpload{Debug|Release}
 
 ------
 
