@@ -2,42 +2,30 @@ package com.vgaidarji.cimatters
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
-import android.widget.EditText
-import butterknife.ButterKnife
-import butterknife.InjectView
-import butterknife.OnClick
+import com.vgaidarji.cimatters.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity(), LoginView {
-    @InjectView(R.id.coordinator)
-    var coordinatorLayout: CoordinatorLayout? = null
 
-    @InjectView(R.id.edit_text_email)
-    var editTextEmail: EditText? = null
-
-    @InjectView(R.id.edit_text_password)
-    var editTextPassword: EditText? = null
-
-    @InjectView(R.id.button_login)
-    var buttonLogin: Button? = null
-    private var presenter: LoginPresenter? = null
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var presenter: LoginPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater);
+        setContentView(binding.root)
         title = getString(R.string.activity_login)
-        ButterKnife.inject(this)
         presenter = LoginPresenter(this)
+        setupLoginButtonClickListener()
     }
 
-    @OnClick(R.id.button_login)
-    fun onLoginClick() {
-        presenter!!.onLoginClick(
-            editTextEmail!!.text.toString(),
-            editTextPassword!!.text.toString()
-        )
+    private fun setupLoginButtonClickListener() {
+        binding.buttonLogin.setOnClickListener {
+            presenter.onLoginClick(
+                binding.editTextEmail.text.toString(),
+                binding.editTextPassword.text.toString()
+            )
+        }
     }
 
     override fun openNextActivity() {
@@ -46,6 +34,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun showError(message: String?) {
-        message?.let { Snackbar.make(coordinatorLayout!!, it, Snackbar.LENGTH_LONG).show() }
+        message?.let { Snackbar.make(binding.coordinator, it, Snackbar.LENGTH_LONG).show() }
     }
 }

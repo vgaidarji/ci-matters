@@ -13,8 +13,8 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LoginActivityTest {
-    @Rule
-    var activityTestRule = ActivityTestRule(
+    @get:Rule
+    val activityTestRule = ActivityTestRule(
         LoginActivity::class.java
     )
 
