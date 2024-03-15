@@ -6,14 +6,14 @@ ext {
 
 jacoco {
     toolVersion = "0.8.11"
-    reportsDirectory = file("$buildDir/reports")
+    reportsDirectory = file("${buildDir}/reports")
 }
 
 task jacocoTestReport(type:JacocoReport, dependsOn: "testDebugUnitTest") {
     group = "Reporting"
     description = "Generate Jacoco coverage reports for Debug build"
     classDirectories = fileTree(
-            dir: "$buildDir/tmp/kotlin-classes/debug",
+            dir: "${buildDir}/tmp/kotlin-classes/debug",
             excludes: ['**/R.class',
                        '**/R$*.class',
                        '**/*$ViewBinder*.*',
@@ -35,7 +35,7 @@ task jacocoTestReport(type:JacocoReport, dependsOn: "testDebugUnitTest") {
     }
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
-    executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
+    executionData = files("${buildDir}/jacoco/testDebugUnitTest.exec")
 }
 
 tasks.withType(Test) {
