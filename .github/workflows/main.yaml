@@ -4,45 +4,44 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: 17
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
     - name: Build
-      uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
-      with:
-        args: "sdkmanager 'platforms;android-26' && ./gradlew assembleDebug"
+      run: "./gradlew assembleDebug"
     - name: Check
-      uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
-      with:
-        args: "./gradlew testDebug jacocoTestReport lintDebug buildDashboard"
+      run: "./gradlew testDebug jacocoTestReport lintDebug buildDashboard"
     - name: Distribute
-      uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
         FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
-      with:
-        args: "./gradlew crashlyticsUploadDistributionDebug"
+      run: "./gradlew crashlyticsUploadDistributionDebug"
     - name: Publish Code Coverage
-      uses: vgaidarji/android-github-actions-build@v1.0.1
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      with:
-        args: "./gradlew coveralls"
+      run: "./gradlew coveralls"
   androidTest:
     runs-on: macOS-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
         env:
           FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
           FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
         with:
-          api-level: 29
+          api-level: 34
           arch: x86
           disable-animations: true
           script: ./gradlew connectedAndroidTest --stacktrace
