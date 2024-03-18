@@ -1,59 +1,114 @@
 ---
-format_version: 1.3.0
+format_version: '13'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: android
+meta:
+  bitrise.io:
+    stack: linux-docker-android-22.04
+    machine_type_id: standard
+pipelines:
+  pipelineBuildTestDistribute:
+    stages:
+      - stageBuildTestDistribute: {}
+stages:
+  stageBuildTestDistribute:
+    workflows:
+      - build: {}
+      - androidTest: {}
 trigger_map:
-- push_branch: "*"
-  workflow: primary
-- pull_request_source_branch: "*"
-  workflow: primary
+  - push_branch: "*"
+    pipeline: pipelineBuildTestDistribute
 workflows:
-  primary:
+  androidTest:
     steps:
-    - activate-ssh-key@4.0.3:
-        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4.0.12: {}
-    - install-missing-android-tools@2.2.0: {}
-    - script@1.1.5:
-        inputs:Switched to shell script from Gradle runner at bitrise (#36)
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            unset ANDROID_NDK_HOME
-
-            ./gradlew assembleDebug testDebug jacocoTestReport checkstyle pmd jdepend lintDebug buildDashboard assembleDebugAndroidTest crashlyticsUploadDistributionDebug -PversionCode=$BITRISE_BUILD_NUMBER -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
-        title: Gradle Build/Test/Analyse/Distribute
-# disabled because of https://github.com/vgaidarji/ci-matters/issues/35
-#    - gradle-runner@1.8.3:
-#        title: Gradle Build/Test/Analyse/Distribute
-#        inputs:
-#        - gradle_task: assembleDebug testDebug jacocoTestReport checkstyle pmd jdepend
-#            lintDebug buildDashboard crashlyticsUploadDistributionDebug -PversionCode=$BITRISE_BUILD_NUMBER
-#            -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
-#        - mapping_file_exclude_filter: ''
-    - gradle-coveralls@1.0.1:
-        inputs:
-        - coveralls_task: coveralls -PversionCode=$BITRISE_BUILD_NUMBER -PfabricApiKey=$FABRIC_API_KEY
-            -PfabricApiSecret=$FABRIC_API_SECRET
-        - coveralls_repo_token: "$COVERALLS_REPO_TOKEN"
-    - deploy-to-bitrise-io@1.3.18:
-        title: Deploy test reports to Bitrise.io
-        inputs:
-        - deploy_path: "$BITRISE_SOURCE_DIR/app/build/reports/jacocoTestReport/"
-        - notify_email_list: ''
-    - deploy-to-bitrise-io@1.3.18:
-        title: Deploy APK to Bitrise.io
+      - activate-ssh-key@4.1:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - git-clone@8.2: {}
+      - set-java-version@1:
+          inputs:
+            - set_java_version: '17'
+      - install-missing-android-tools@3.2: {}
+      - android-build-for-ui-testing@0:
+          inputs:
+            - variant: "$BUILD_TYPE"
+            - module: app
+      - avd-manager@1:
+          inputs:
+            - tag: default
+            - abi: x86_64
+            - api_level: '34'
+      - wait-for-android-emulator@1: {}
+      - android-instrumented-test@0: {}
+      - deploy-to-bitrise-io@2.7:
+          title: Deploy build outputs to Bitrise.io
+          inputs:
+            - deploy_path: "$BITRISE_SOURCE_DIR/app/build/outputs"
+            - notify_email_list: ''
+      - deploy-to-bitrise-io@2.7:
+          title: Deploy test reports to Bitrise.io
+          inputs:
+            - deploy_path: "$BITRISE_SOURCE_DIR/app/build/reports"
+            - notify_email_list: ''
+  build:
+    steps:
+      - activate-ssh-key@4.1:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - git-clone@8.2: {}
+      - set-java-version@1:
+          inputs:
+            - set_java_version: '17'
+      - install-missing-android-tools@3.2: {}
+      - android-build@1:
+          inputs:
+            - variant: "$BUILD_TYPE"
+      - script@1.2:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # debug log
+                set -x
+                
+                ./gradlew testDebug jacocoTestReport lintDebug buildDashboard
+          title: Check
+      - script@1:
+          inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -e
+                # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+                set -o pipefail
+                # debug log
+                set -x
+                
+                echo $FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON > $BITRISE_SOURCE_DIR/credentials.json
+                export FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON=$BITRISE_SOURCE_DIR/credentials.json && ./gradlew appDistributionUploadDebug
+          title: Distribute To Firebase
+      - codecov@3:
+          inputs:
+            - OS: linux
+            - CODECOV_TOKEN: "$CODECOV_TOKEN"
+      - deploy-to-bitrise-io@2.7:
+          title: Deploy test reports to Bitrise.io
+          inputs:
+            - deploy_path: "$BITRISE_SOURCE_DIR/app/build/reports/jacocoTestReport/"
+            - notify_email_list: ''
+      - custom-test-results-export@1:
+          inputs:
+            - search_pattern: "*/build/test-results/testDebugUnitTest/*"
+            - test_name: tests
+      - deploy-to-bitrise-io@2.7:
+          title: Deploy APK to Bitrise.io
 app:
   envs:
-  - opts:
-      is_expand: false
-    GRADLE_BUILD_FILE_PATH: build.gradle
-  - opts:
-      is_expand: false
-    GRADLE_TASK: assembleDebug
-  - opts:
-      is_expand: false
-    GRADLEW_PATH: "./gradlew"
+    - opts:
+        is_expand: false
+      GRADLE_BUILD_FILE_PATH: build.gradle
+    - opts:
+        is_expand: false
+      BUILD_TYPE: debug
+    - opts:
+        is_expand: false
+      GRADLEW_PATH: "./gradlew"

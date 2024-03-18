@@ -1,61 +1,14 @@
-apply plugin: 'pmd'
 apply plugin: 'build-dashboard'
-apply plugin: 'jdepend'
-apply from: 'config/checkstyle/checkstyle.gradle'
 
 android {
     lintOptions {
         abortOnError false
         xmlReport true
         htmlReport true
-        lintConfig file("${project.rootDir}/app/config/lint/lint.xml")
-        htmlOutput file("$project.buildDir/reports/lint/lint-result.html")
-        xmlOutput file("$project.buildDir/reports/lint/lint-result.xml")
+        lintConfig file("${buildDir}/app/config/lint/lint.xml")
+        htmlOutput file("${buildDir}/reports/lint/lint-result.html")
+        xmlOutput file("${buildDir}/reports/lint/lint-result.xml")
     }
 }
 
-task pmd(type: Pmd) {
-    description 'Run PMD/CPD analysis.'
-    group 'verification'
-
-    ignoreFailures = true
-    ruleSetFiles = files("${project.rootDir}/app/config/pmd/pmd-ruleset.xml")
-    ruleSets = []
-
-    source = fileTree('src/main/java')
-    include '**/*.java'
-    exclude '**/gen/**'
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-        xml {
-            destination "$project.buildDir/reports/pmd/pmd.xml"
-        }
-        html {
-            destination "$project.buildDir/reports/pmd/pmd.html"
-        }
-    }
-
-    doLast {
-        File outDir = new File("$project.buildDir/reports/pmd/")
-        ant.taskdef(name: 'cpd', classname: 'net.sourceforge.pmd.cpd.CPDTask',
-                classpath: configurations.pmd.asPath)
-        ant.cpd(minimumTokenCount: '50', format: 'xml',
-                outputFile: new File(outDir, 'cpd.xml')) {
-            fileset(dir: "src/main/java") {
-                include(name: '**/*.java')
-            }
-        }
-    }
-}
-
-task(jdepend, type: JDepend) {
-    group = "Verification"
-    description 'Run JDepend plugin'
-    classesDir = file('build/intermediates/classes/debug/')
-    reports {
-        xml.enabled true
-        text.enabled false
-    }
-}
+// TODO: configure detekt

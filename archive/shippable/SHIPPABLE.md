@@ -20,7 +20,7 @@ More info about configuration file can found [here](http://docs.shippable.com/ci
 
 3. Create [secure environment variables](http://docs.shippable.com/ci/advancedOptions/environmentVariables/#secure-variables)
 
-    <img src="/screenshots/shippable_env_variables.png">
+    <img src="/archive/shippable/screenshots/shippable_env_variables.png">
     
     *Variables should be separated with space.*
     
@@ -28,37 +28,37 @@ More info about configuration file can found [here](http://docs.shippable.com/ci
     Shippable provides secure string with encrypted variables, 
     which should be used in `shippable.yml` or `shippable.resources.yml` files. 
     
-    <img src="/screenshots/shippable_env_variables_encrypted.png">
+    <img src="/archive/shippable/screenshots/shippable_env_variables_encrypted.png">
      
     Copy encrypted string and place it into `shippable.yml`:
     
-    <img src="/screenshots/shippable_env_variables_in_yml.png">
+    <img src="/archive/shippable/screenshots/shippable_env_variables_in_yml.png">
     
 4. Choose existing docker image to use or create your own and define it in `shippable.yml`:
 
-    <img src="/screenshots/shippable_docker_image.png">
+    <img src="/archive/shippable/screenshots/shippable_docker_image.png">
     
     It's good idea to check what provides docker image by checking it's Dockerfile ([vgaidarji/docker-android-shippable](https://hub.docker.com/r/vgaidarji/docker-android-shippable/~/dockerfile/)).
     
 5. Configure [build steps](http://docs.shippable.com/ci/shippableyml/) in `shippable.yml`:
 
-    <img src="/screenshots/shippable_ci_section.png">
+    <img src="/archive/shippable/screenshots/shippable_ci_section.png">
     
     In this case we install missing Android dependencies, run Android emulator, `build/test/analyze` the project
     and publish code coverage results to Shippable. Shippable accepts code coverage reports only in Cobertura format.
     
 6. Configure notifications:
 
-    <img src="/screenshots/shippable_notifications.png">
+    <img src="/archive/shippable/screenshots/shippable_notifications.png">
  
 #### Reports
 
 ###### JUnit test results:
 
-<img src="/screenshots/shippable_junit_reports.png">
+<img src="/archive/shippable/screenshots/shippable_junit_reports.png">
     
-<img src="/screenshots/shippable_code_coverage.png">
+<img src="/archive/shippable/screenshots/shippable_code_coverage.png">
 
 ###### Build information:
 
-<img src="/screenshots/shippable_build_information.png">
+<img src="/archive/shippable/screenshots/shippable_build_information.png">

@@ -13,17 +13,17 @@ which are sufficient to configure the project.
 
 1. Configure environment variables in `AppSettings -> Build Settings -> Environment Variables` 
 
-    <img src="/screenshots/buddy_build_env_variables.png">
+    <img src="/archive/buddybuild/screenshots/buddy_build_env_variables.png">
 
 2. Configure email notifications and notifications rules
  
-    <img src="/screenshots/buddy_build_email_notifications.png">
+    <img src="/archive/buddybuild/screenshots/buddy_build_email_notifications.png">
     
 3. Configure UI tests
 
-    <img src="/screenshots/buddy_build_ui_tests_real_devices.png">
+    <img src="/archive/buddybuild/screenshots/buddy_build_ui_tests_real_devices.png">
 
-    <img src="/screenshots/buddy_build_ui_tests_emulator.png">
+    <img src="/archive/buddybuild/screenshots/buddy_build_ui_tests_emulator.png">
     
     **Unfortunately there's no possibility to customize Android emulator settings.**
     
@@ -32,7 +32,7 @@ which are sufficient to configure the project.
 
 4. Install BuddyBuild SDK
  
-    <img src="/screenshots/buddy_build_install_sdk.png">
+    <img src="/archive/buddybuild/screenshots/buddy_build_install_sdk.png">
 
     BuddyBuild can automatically configure itself in a project, 
     but in this case project might not compile if custom code style checks configured. 
@@ -50,17 +50,17 @@ via `buddybuild_postclone.sh`, `buddybuild_prebuild.sh` and `buddybuild_postbuil
 
 ###### BuddyBuild shows JUnit reports automatically (not very informative):
 
-<img src="/screenshots/buddy_build_junit_tests.png">
+<img src="/archive/buddybuild/screenshots/buddy_build_junit_tests.png">
 
 For some reason `Code coverage` is 0%
 
-<img src="/screenshots/buddy_build_junit_tests_coverage.png">
+<img src="/archive/buddybuild/screenshots/buddy_build_junit_tests_coverage.png">
 
 and `Builds` tab shows wrong coverage 91.1% coverage instead of 100%:
 
-<img src="/screenshots/buddy_build_builds_view.png">
+<img src="/archive/buddybuild/screenshots/buddy_build_builds_view.png">
 
 ###### BuddyBuild shows UI reports automatically (not very informative):
 
-<img src="/screenshots/buddy_build_ui_tests.png">
+<img src="/archive/buddybuild/screenshots/buddy_build_ui_tests.png">
 

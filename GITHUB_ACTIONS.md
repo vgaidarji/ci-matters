@@ -17,7 +17,7 @@ GitHub provides [basic documentation](https://developer.github.com/actions) on h
     See these projects' `README` and `Dockerfile` files for configuration details.
 
     Use `vgaidarji/android-github-actions/build@v1.0.0` for regular build steps and provide commands via action `args` parameter.
-    For example: `args = "./gradlew assembleDebug -PpreDexEnable=false"`. This will be passed to `entrypoint.sh` of the appropriate GitHub Action and executed in root folder of the workspace.
+    For example: `args = "./gradlew assembleDebug"`. This will be passed to `entrypoint.sh` of the appropriate GitHub Action and executed in root folder of the workspace.
 
     Use `vgaidarji/android-github-actions/emulator@v1.0.0` for running UI tests on Android Emulator.
     By default, this action will execute [ui-test-on-emulator](https://github.com/vgaidarji/android-github-actions/blob/0381c333953e22b4b95d4ef843effefb35c67fdf/emulator/Dockerfile#L18) script (see [script sources](https://github.com/vgaidarji/docker-android/blob/570d8f3aacd6af72b817254d08c99cd5bae57636/docker-android-emulator/ui-tests-on-emulator.sh)).

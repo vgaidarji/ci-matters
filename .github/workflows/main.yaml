@@ -4,45 +4,51 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: 17
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
     - name: Build
-      uses: vgaidarji/android-github-actions-build@v1.0.1
-      env:
-        FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
-        FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
-      with:
-        args: "sdkmanager 'platforms;android-26' && ./gradlew assembleDebug -PpreDexEnable=false"
+      run: "./gradlew assembleDebug"
     - name: Check
-      uses: vgaidarji/android-github-actions-build@v1.0.1
-      env:
-        FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
-        FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
-      with:
-        args: "./gradlew testDebug jacocoTestReport checkstyle pmd jdepend lintDebug buildDashboard -PpreDexEnable=false"
+      run: "./gradlew testDebug jacocoTestReport lintDebug buildDashboard"
     - name: Distribute
-      uses: vgaidarji/android-github-actions-build@v1.0.1
-      env:
-        FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
-        FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
+      run: |
+        echo '${{ secrets.FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON }}' > $RUNNER_TEMP/credentials.json
+        export FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON=$RUNNER_TEMP/credentials.json && ./gradlew appDistributionUploadDebug
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
       with:
-        args: "./gradlew crashlyticsUploadDistributionDebug -PpreDexEnable=false"
-    - name: Publish Code Coverage
-      uses: vgaidarji/android-github-actions-build@v1.0.1
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      with:
-        args: "./gradlew coveralls -PpreDexEnable=false"
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: vgaidarji/ci-matters
   androidTest:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        api-level: [ 34 ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
       - name: Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
-        env:
-          FABRIC_API_KEY: ${{ secrets.FABRIC_API_KEY }}
-          FABRIC_API_SECRET: ${{ secrets.FABRIC_API_SECRET }}
         with:
-          api-level: 29
-          arch: x86
+          api-level: ${{ matrix.api-level }}
+          arch: x86_64
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: ./gradlew connectedAndroidTest --stacktrace

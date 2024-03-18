@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.vgaidarji.cimatters">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,11 +11,8 @@
             android:theme="@style/AppTheme"
             android:name=".CiMattersApplication">
 
-        <meta-data
-                android:name="io.fabric.ApiKey"
-                android:value="${fabricApiKey}" />
-
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

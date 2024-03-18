@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "3225927432",
+    "project_id": "ci-matters-a498c",
+    "storage_bucket": "ci-matters-a498c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3225927432:android:1299f0babc1137e8b2b6bd",
+        "android_client_info": {
+          "package_name": "com.vgaidarji.cimatters"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-6cjWLUnfo7hd0dXRW_Gd2E_CxUrXOEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3225927432:android:10d44974fc042c1eb2b6bd",
+        "android_client_info": {
+          "package_name": "com.vgaidarji.cimatters.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-6cjWLUnfo7hd0dXRW_Gd2E_CxUrXOEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
