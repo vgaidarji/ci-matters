@@ -5,7 +5,6 @@ apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.firebase.crashlytics'
 apply from: 'config/quality.gradle'
 apply from: 'config/jacoco.gradle'
-apply from: 'config/coveralls.gradle'
 
 def versionMajor = 1
 def versionMinor = 0

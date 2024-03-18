@@ -101,8 +101,8 @@ Distribute the build using following command:
 
 ------
 
-### Coveralls
+### Codecov.io
 
-[![Coverage Status](https://coveralls.io/repos/github/vgaidarji/ci-matters/badge.svg)](https://coveralls.io/github/vgaidarji/ci-matters)
+[![codecov](https://codecov.io/gh/vgaidarji/ci-matters/graph/badge.svg?token=ubhWNTji7m)](https://codecov.io/gh/vgaidarji/ci-matters)
 
-`Coveralls` provides test coverage information. `COVERALLS_REPO_TOKEN` environment variable should be exported on the build machine.
+`Codecov.io` provides test coverage information. `CODECOV_TOKEN` environment variable should be exported on the build machine.
