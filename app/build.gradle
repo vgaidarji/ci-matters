@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.appdistribution'
+apply plugin: 'com.google.firebase.crashlytics'
 apply from: 'config/quality.gradle'
 apply from: 'config/jacoco.gradle'
-apply from: 'config/coveralls.gradle'
 
 def versionMajor = 1
 def versionMinor = 0
@@ -38,85 +40,59 @@ def getVersionName = { ->
     return name
 }
 
-def getFabricApiKey = { ->
-    def noKey = "0000000000000000000000000000000000000000"
-    def key = project.hasProperty('fabricApiKey') ? fabricApiKey.toString() :
-            System.getenv("FABRIC_API_KEY") ?: noKey
-    if (key == noKey)
-        println "Fabric API key not found"
-    else
-        println "Fabric API key found"
-    return key
-}
-
-def getFabricApiSecret = { ->
-    def secret = project.hasProperty('fabricApiSecret') ? fabricApiSecret.toString() :
-            System.getenv("FABRIC_API_SECRET") ?: ""
-    if (secret.isEmpty())
-        println "Fabric API Secret not found"
-    else
-        println "Fabric API Secret found"
-    return secret
-}
-
-task fabricProperties() {
-    description "Generate fabric.properties file with apiSecret"
-    ant.propertyfile(file: "$projectDir/fabric.properties") {
-        entry(key: "apiSecret", value: getFabricApiSecret())
-    }
-}
-
-preBuild.dependsOn('fabricProperties')
-
 android {
-    compileSdkVersion 25
-    buildToolsVersion "24.0.3"
+    compileSdk 34
     defaultConfig {
         applicationId "com.vgaidarji.cimatters"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion 24
+        targetSdkVersion 34
         versionCode getVersionCode()
         versionName getVersionName()
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        manifestPlaceholders = [
-                fabricApiKey: getFabricApiKey()
-        ]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
-            testCoverageEnabled = true
+            applicationIdSuffix ".debug"
+            debuggable true
+            firebaseAppDistribution {
+                artifactType="APK"
+                serviceCredentialsFile = System.getenv('FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON')
+            }
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            firebaseAppDistribution {
+                artifactType="APK"
+                serviceCredentialsFile = System.getenv('FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON')
+            }
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
     }
-}
-
-repositories {
-    maven { url 'https://maven.fabric.io/public' }
+    namespace 'com.vgaidarji.cimatters'
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.jakewharton:butterknife:5.1.1'
-    compile 'com.android.support:design:25.0.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
-        transitive = true;
-    }
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-all:2.0.2-beta'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation platform('com.google.firebase:firebase-bom:32.7.4')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:5.11.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
 }

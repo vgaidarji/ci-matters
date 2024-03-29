@@ -46,7 +46,7 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - ./gradlew clean assembleDebug testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard connectedAndroidTest crashlyticsUploadDistributionDebug -PpreDexEnable=false -PversionCode=$TRAVIS_BUILD_NUMBER -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+  - ./gradlew clean assembleDebug testDebug jacocoTestReport coveralls lintDebug buildDashboard connectedAndroidTest crashlyticsUploadDistributionDebug -PversionCode=$TRAVIS_BUILD_NUMBER -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
 
 env:
   matrix:

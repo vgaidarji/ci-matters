@@ -1,56 +1,30 @@
-version: 2
+version: 2.1
+orbs:
+  android: circleci/android@2.5.0
+  codecov: codecov/codecov@4.0.1
 jobs:
   build:
     working_directory: ~/code
-    docker:
-      - image: circleci/android:api-28-alpha
-    environment:
-      JVM_OPTS: -Xmx3200m
-      ADB_INSTALL_TIMEOUT: 10
-      TERM: dumb
+    executor:
+      name: android/android-machine
+      tag: 2024.01.1
     steps:
       - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - android/change-java-version:
+          java-version: 17
+      - android/accept-licenses
       - run:
-          name: Accept Android Licenses
-          command: yes | sdkmanager --licenses && yes | sdkmanager --update  || exit 0
+          name: Build
+          command: ./gradlew assembleDebug
       - run:
-          name: Download Dependencies
-          command: ./gradlew clean androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          name: Check
+          command: ./gradlew testDebug jacocoTestReport lintDebug buildDashboard
       - run:
-          name: Install Android dependencies
+          name: Distribute
           command: |
-            sdkmanager "platform-tools"
-            sdkmanager "platforms;android-15"
-            sdkmanager "platforms;android-21"
-            sdkmanager "platforms;android-22"
-            sdkmanager "platforms;android-25"
-            sdkmanager "build-tools;24.0.3"
-            sdkmanager "extras;android;m2repository"
-            sdkmanager "extras;google;m2repository"
-            sdkmanager "extras;google;google_play_services"
-            sdkmanager "system-images;android-21;default;armeabi-v7a"
-      - run:
-          name: Setup emulator
-          command: echo "no" | avdmanager create avd -n test -k "system-images;android-21;default;armeabi-v7a"
-      - run:
-          name: Launch emulator
-          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator -avd test -noaudio -no-boot-anim -no-window -accel on
-          background: true
-      - run:
-          name: Wait for emulator
-          command: circle-android wait-for-boot
-      - run:
-          name: Run UI tests
-          command: ./gradlew connectedAndroidTest
-      - run:
-          name: Build and check
-          command: ./gradlew testDebug jacocoTestReport coveralls checkstyle pmd jdepend lintDebug buildDashboard crashlyticsUploadDistributionDebug -PpreDexEnable=false -PversionCode=$CIRCLE_BUILD_NUM -PfabricApiKey=$FABRIC_API_KEY -PfabricApiSecret=$FABRIC_API_SECRET
+            echo $FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON_B64 | base64 -d | tee $(pwd)/google-services-account.json > /dev/null
+            export FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON=$(pwd)/google-services-account.json && ./gradlew appDistributionUploadDebug
+      - codecov/upload
       - store_artifacts:
           path: app/build/outputs
           destination: outputs
@@ -59,3 +33,39 @@ jobs:
           destination: reports
       - store_test_results:
           path: app/build/test-results
+  androidTest:
+    working_directory: ~/code
+    executor:
+      name: android/android-machine
+      tag: 2024.01.1
+    steps:
+      - checkout
+      - android/change-java-version:
+          java-version: 17
+      - android/accept-licenses
+      - android/create-avd:
+          avd-name: test
+          install: true
+          system-image: system-images;android-32;default;x86_64
+      - android/start-emulator:
+          avd-name: test
+          no-window: true
+          restore-gradle-cache-prefix: v1a
+      - android/run-tests:
+          test-command: ./gradlew connectedAndroidTest --stacktrace
+      - android/save-gradle-cache:
+          cache-prefix: v1a
+      - store_artifacts:
+          path: app/build/outputs
+          destination: outputs
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - store_test_results:
+          path: app/build/test-results
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - androidTest

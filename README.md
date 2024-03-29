@@ -3,22 +3,25 @@ Integration (comparison) of different continuous integration services on Android
 
 ### CI's integration
 
-* [x] [Jenkins](./JENKINS.md)
-* [x] [Travis CI](./TRAVIS.md) [![Build Status](https://travis-ci.org/vgaidarji/ci-matters.svg?branch=master)](https://travis-ci.org/vgaidarji/ci-matters)
+* [x] [GitHub Actions](./GITHUB_ACTIONS.md) ![Build Status](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=master)
 * [x] [Bitrise](./BITRISE.md) [![Build Status](https://app.bitrise.io/app/002b43ae8a42b6b1/status.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://app.bitrise.io/app/002b43ae8a42b6b1)
-* [x] [TeamCity](./TEAM_CITY.md)
-* [x] [BuddyBuild](./BUDDY_BUILD.md) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
-* [x] [Shippable](./SHIPPABLE.md) [![Run Status](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/badge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c) [![Coverage Badge](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/coverageBadge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c)
 * [x] [Circle](./CIRCLE.md) [![CircleCI](https://circleci.com/gh/vgaidarji/ci-matters.svg?style=svg)](https://circleci.com/gh/vgaidarji/ci-matters)
-* [x] [GitHub Actions](./GITHUB_ACTIONS.md)
+* [x] [Jenkins](./JENKINS.md)
+* [x] [TeamCity](./TEAM_CITY.md)
 
 ### TODO
 
-* [ ] Nevercode.io
+* [ ] Codemagic.io
 * [ ] Gitlab CI
 * [ ] Drone.io
 
 ---
+
+### Codecov.io
+
+[![codecov](https://codecov.io/gh/vgaidarji/ci-matters/graph/badge.svg?token=ubhWNTji7m)](https://codecov.io/gh/vgaidarji/ci-matters)
+
+`Codecov.io` provides test coverage information. `CODECOV_TOKEN` environment variable should be exported on the build machine.
 
 ### Comparison
 
@@ -30,15 +33,12 @@ This table should help people make a decision which CI to choose for the project
 | ------------- |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Jenkins       |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:|:radio:/:computer:|:free:|
 | TeamCity      |:star:|:star:|:star:|:star:|:star:|:bust_in_silhouette::raised_hands:/:cloud:|:computer:|:moneybag::moneybag::moneybag:|
-| Travis CI     |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
 | Bitrise       |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
-| Shippable     |:star:|:star:|:star:|:star:|:x:|:cloud:|:radio:|:moneybag:|
 | Circle CI     |:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
-| Buddybuild    |:star:|:star:|:x:|:x:|:x:|:cloud:|:computer:|:moneybag::moneybag:|
 | GitHub Actions|:star:|:star:|:star:|:star:|:x:|:cloud:|:computer:|:free:|
 | Gitlab CI     |.|.|.|.|.|.|.|:moneybag:|
 | Nevecode.io   |.|.|.|.|.|.|.|:moneybag::moneybag:|
-| Drone.io      |.|.|.|.|.|.|.|:moneybag:|
+| Codemagic.io  |.|.|.|.|.|.|.|:moneybag:|
 
 |. |. |.|. |. |. |. |. |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -67,12 +67,10 @@ What might matter is the starting price for paid plan:
 * [Travis CI](https://travis-ci.com/plans) - starts with **69$/month.** (1 concurrent build, &infin; projects, &infin; build time)
 * [Bitrise](https://www.bitrise.io/pricing) - starts with **50$/month.** (1 concurrent build, &infin; projects, 45 min. max build time)
 * [TeamCity](https://www.jetbrains.com/teamcity/buy/#license-type=new-license) - starts with **299$.** (4 concurrent builds, 30 project configurations, &infin; build time)
-* [Shippable](https://app.shippable.com/pricing.html) - starts with **25$/month.** (2 concurrent builds, &infin; projects, &infin; build time)
 * [Gitlab CI](https://about.gitlab.com/products/) - starts with **15$/month.** (2 concurrent builds, &infin; projects, &infin; build time)
 * [Circle CI](https://circleci.com/pricing/) - starts with **39$/month.** (2 concurrent builds, &infin; projects, 500 minutes build time per month)
 * [Nevercode.io](https://nevercode.io/pricing/) - starts with **5$/month.** (1 concurrent build, &infin; projects, 90 min. max build time)
 * [Drone.io](https://drone.io/pricing) - starts with **25$/month.** (1 concurrent build, 5 private projects, &infin; build time)
-* [Buddybuild](https://www.buddybuild.com/pricing/) - starts with **79$/month.** (1 concurrent build, &infin; projects, &infin; build time)
 
 #### Presentation
 
@@ -85,35 +83,24 @@ It doesn't contain information about ALL existing CI services, but should be a g
 
 In few words:
 - [Jenkins](https://jenkins.io/)/[TeamCity](https://www.jetbrains.com/teamcity/) for complex workflow
-- [Travis CI](https://travis-ci.org/)/[Circle CI](https://circleci.com/) for open-source projects
+- [Circle CI](https://circleci.com/) for open-source projects
 - [Bitrise.io](https://bitrise.io/) for any workflow
 
 ---
 
-### Checkstyle
+### Firebase App Distribution project configuration
 
-Project uses custom Checkstyle [rules](https://github.com/vgaidarji/ci-matters/blob/master/app/config/checkstyle/checkstyle.xml).
+In order to distribute Android builds to Firebase, Google Service Account ([link](https://firebase.google.com/docs/app-distribution/android/distribute-gradle#authenticate)) credentials should be created.
+Service Account then needs to be saved in secure place and exported in `FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_JSON={service-account.json}` environment variable on CI. 
+Use secret variables on CI/repo level for this.
 
----
+Distribute the build using following command:
 
-### Fabric/Crashlytics project configuration
+    ./gradlew appDistributionUpload{Debug|Release}
 
-In order to upload APK to Crashlytics project should have following configuration:
-`${projectDir}/fabric.properties` file with `apiSecret` and `io.fabric.ApiKey` in AndroidManifest.xml([1](https://github.com/vgaidarji/ci-matters/blob/master/app/src/main/AndroidManifest.xml#L17),
-[2](https://github.com/vgaidarji/ci-matters/blob/master/app/build.gradle#L59)) file.
-**Both keys should not be uploaded to the repository for security reasons!**
+### Archive
 
-Pass both parameters to your build from command line:
-
-    ./gradlew -PfabricApiKey="YOUR_API_KEY" -PfabricApiSecret="YOUR_API_SECRET" crashlyticsUploadDistributionDebug
-
-or export these keys as environment variables on a build machine
-and they will be automatically read from there during the build (no need to pass keys as parameters in this case).
-
-------
-
-### Coveralls
-
-[![Coverage Status](https://coveralls.io/repos/github/vgaidarji/ci-matters/badge.svg)](https://coveralls.io/github/vgaidarji/ci-matters)
-
-`Coveralls` provides test coverage information. `COVERALLS_REPO_TOKEN` environment variable should be exported on the build machine.
+Following CIs are no longer integrated (either because they have been discontinued or due to pricing policy change such as Travis).
+* [x] [Travis CI](archive/travis/TRAVIS.md)
+* [x] [BuddyBuild](archive/buddybuild/BUDDY_BUILD.md)
+* [x] [Shippable](archive/shippable/SHIPPABLE.md) 
