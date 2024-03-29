@@ -3,7 +3,7 @@ Integration (comparison) of different continuous integration services on Android
 
 ### CI's integration
 
-* [x] [GitHub Actions](./GITHUB_ACTIONS.md) ![Build Status](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=master)
+* [x] [GitHub Actions](./GITHUB_ACTIONS.md) ![Build Status](https://github.com/vgaidarji/ci-matters/actions/workflows/main.yaml/badge.svg?branch=master)
 * [x] [Bitrise](./BITRISE.md) [![Build Status](https://app.bitrise.io/app/002b43ae8a42b6b1/status.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://app.bitrise.io/app/002b43ae8a42b6b1)
 * [x] [Circle](./CIRCLE.md) [![CircleCI](https://circleci.com/gh/vgaidarji/ci-matters.svg?style=svg)](https://circleci.com/gh/vgaidarji/ci-matters)
 * [x] [Jenkins](./JENKINS.md)
