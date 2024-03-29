@@ -3,11 +3,11 @@ Integration (comparison) of different continuous integration services on Android
 
 ### CI's integration
 
-* [x] [Jenkins](./JENKINS.md)
+* [x] [GitHub Actions](./GITHUB_ACTIONS.md) ![Build Status](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=master)
 * [x] [Bitrise](./BITRISE.md) [![Build Status](https://app.bitrise.io/app/002b43ae8a42b6b1/status.svg?token=xT4EDBQWGNcSWJveU6IEVA&branch=master)](https://app.bitrise.io/app/002b43ae8a42b6b1)
-* [x] [TeamCity](./TEAM_CITY.md)
 * [x] [Circle](./CIRCLE.md) [![CircleCI](https://circleci.com/gh/vgaidarji/ci-matters.svg?style=svg)](https://circleci.com/gh/vgaidarji/ci-matters)
-* [x] [GitHub Actions](./GITHUB_ACTIONS.md)
+* [x] [Jenkins](./JENKINS.md)
+* [x] [TeamCity](./TEAM_CITY.md)
 
 ### TODO
 
@@ -15,14 +15,13 @@ Integration (comparison) of different continuous integration services on Android
 * [ ] Gitlab CI
 * [ ] Drone.io
 
-### Archive
-
-Following CIs are no longer integrated (either because they have been discontinued or due to pricing policy change such as Travis).
-* [x] [Travis CI](archive/travis/TRAVIS.md) [![Build Status](https://travis-ci.org/vgaidarji/ci-matters.svg?branch=master)](https://travis-ci.org/vgaidarji/ci-matters)
-* [x] [BuddyBuild](archive/buddybuild/BUDDY_BUILD.md) [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58398ac5beb35b010082e315&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58398ac5beb35b010082e315/build/latest)
-* [x] [Shippable](archive/shippable/SHIPPABLE.md) [![Run Status](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/badge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c) [![Coverage Badge](https://api.shippable.com/projects/5832c72ab8b8e41000a5eb5c/coverageBadge?branch=master)](https://app.shippable.com/projects/5832c72ab8b8e41000a5eb5c)
-
 ---
+
+### Codecov.io
+
+[![codecov](https://codecov.io/gh/vgaidarji/ci-matters/graph/badge.svg?token=ubhWNTji7m)](https://codecov.io/gh/vgaidarji/ci-matters)
+
+`Codecov.io` provides test coverage information. `CODECOV_TOKEN` environment variable should be exported on the build machine.
 
 ### Comparison
 
@@ -99,10 +98,9 @@ Distribute the build using following command:
 
     ./gradlew appDistributionUpload{Debug|Release}
 
-------
+### Archive
 
-### Codecov.io
-
-[![codecov](https://codecov.io/gh/vgaidarji/ci-matters/graph/badge.svg?token=ubhWNTji7m)](https://codecov.io/gh/vgaidarji/ci-matters)
-
-`Codecov.io` provides test coverage information. `CODECOV_TOKEN` environment variable should be exported on the build machine.
+Following CIs are no longer integrated (either because they have been discontinued or due to pricing policy change such as Travis).
+* [x] [Travis CI](archive/travis/TRAVIS.md)
+* [x] [BuddyBuild](archive/buddybuild/BUDDY_BUILD.md)
+* [x] [Shippable](archive/shippable/SHIPPABLE.md) 
